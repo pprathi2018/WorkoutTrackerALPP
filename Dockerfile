@@ -1,20 +1,17 @@
-FROM node:14.15.3
+FROM node:latest
 
-ENV NODE_ENV=production
+LABEL maintainer="pprathi2018@gmail.com"
 
-# set a directory for the app
+RUN mkdir -p /usr/src/app
+
 WORKDIR /usr/src/app
 
-# COPY ["package.json", "package-lock.json*", "./"]
+COPY package.json /usr/src/app
 
-# install dependencies
-RUN npm install --production
+RUN npm install
 
-# copy all the files to the container
 COPY . .
 
-# tell the port number the container should expose
-EXPOSE 5000
+EXPOSE 3000
 
-# run the command
 CMD ["node", "server.js"]
