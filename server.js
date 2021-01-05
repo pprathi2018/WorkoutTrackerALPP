@@ -4,9 +4,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 const app = express();
-const connectionString = 'mongodb+srv://andrewlin573:Alin4523$$@cluster0.bv2vu.mongodb.net/andrewlin573?retryWrites=true&w=majority'
+const connectionString = 'mongodb+srv://pprathi2018:Pr01302k1@cluster0.meoms.mongodb.net/WorkoutTracker?retryWrites=true&w=majority'
 
 const port = 3000;
+
 
 MongoClient.connect(connectionString, {useUnifiedTopology: true})
     .then(client => {
@@ -30,7 +31,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
             res.render('index.ejs', {exercises: results});
         }).catch(error => console.error(error))
     })
-
+    
     app.get('/workouts', (req, res) => {
         db.collection("exercises").find().toArray().then(results => {
             res.render('workouts.ejs', {exercises: results});
