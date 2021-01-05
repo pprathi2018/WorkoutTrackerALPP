@@ -13,41 +13,66 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
     console.log('Connected to Database');
     const db = client.db('WorkoutTrackerDB');
     const exercisesCollection = db.collection('exercises');
+    const usersCollection = db.collection('users');
+    var user;
 
     app.set('view engine', 'ejs');
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
     app.use(express.static('public'));
 
+    // ----- ROUTING ----- //
     app.get("/", (req, res) => {
-        db.collection("exercises").find().toArray().then(results => {
-            res.render('index.ejs', {exercises: results});
-        }).catch(error => console.error(error))
+        res.render('index.ejs');
+        // db.collection("exercises").find().toArray().then(results => {
+        //     res.render('index.ejs', {exercises: results});
+        // }).catch(error => console.error(error))
     })
 
     app.get('/home', (req, res) => {
-        db.collection("exercises").find().toArray().then(results => {
-            res.render('index.ejs', {exercises: results});
-        }).catch(error => console.error(error))
+        res.render('index.ejs');
     })
 
     app.get('/workouts', (req, res) => {
-        db.collection("exercises").find().toArray().then(results => {
-            res.render('workouts.ejs', {exercises: results});
-        }).catch(error => console.error(error))
+        res.render('workouts.ejs');
     })
 
     app.get('/analytics', (req, res) => {
-        db.collection("exercises").find().toArray().then(results => {
-            res.render('analytics.ejs', {exercises: results});
-        }).catch(error => console.error(error))
+        res.render('analytics.ejs');
     })
     
     app.get('/login', (req, res) => {
-        db.collection("exercises").find().toArray().then(results => {
-            res.render('login.ejs', {exercises: results});
+        res.render('login.ejs');
+    })
+
+    app.get('/users', (req, res) => {
+        res.redirect('/login');
+    })
+
+    // ----- USERS ----- //
+    app.post('/users', (req, res) => {
+        usersCollection.insertOne(req.body).then(result => {
+            res.redirect('/login');
         }).catch(error => console.error(error))
     })
+
+    app.put('/users', (req, res) => {
+        document.getElementById('test').innerHTML("SUCCESS");
+        user = usersCollection.findOne(
+            {
+                username: req.body.username,
+                password: req.body.password
+            }
+        ).then(result => {
+            // document.getElementById('test').innerHTML("SUCCESS, name: " + user.username);
+            res.redirect('/login')
+            // res.json('Success');
+        }).catch(error => console.error(error));
+    })
+
+
+    // -----  ----- //
+
 
     app.post('/exercises', (req, res) => {
         exercisesCollection.insertOne(req.body).then(result => {

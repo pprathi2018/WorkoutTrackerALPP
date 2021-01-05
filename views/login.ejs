@@ -17,10 +17,25 @@
             <li id="login"><a href="/login">Login</a></li>
         </ul>
     </nav>
-    <div>
-        LOGIN
+    <div class="main-div">
+        <form action="/users" method="PUT">
+            <input type="text" placeholder="Username" name="username">
+            <input type="text" placeholder="Password" name="password">
+            <button id="submit">Login</button>
+        </form>
+        
+        <text id="test">TEST</text>
+
+        <form action="/users" method="POST">
+            <input type="text" placeholder="Email" name="email">
+            <input type="text" placeholder="First Name" name="fname">
+            <input type="text" placeholder="Username" name="username">
+            <input type="text" placeholder="Password" name="password">
+            <button type="submit">Sign Up</button>
+        </form>
+
     </div>
-    <script>
+    <script src="main.js">
             document.getElementById("login").style.backgroundColor = "#92C4EE";
     </script>
 </body>

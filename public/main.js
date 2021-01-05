@@ -36,3 +36,14 @@ deleteButton.addEventListener('click', _ => {
         }
     }).catch(error => console.error(error))
 })
+
+// LOGIN PAGE
+// const loginButton = document.querySelector("#login");
+
+// loginButton.addEventListener('click', _ => {
+//     fetch('/users', {
+//         method: 'get',
+//         headers: {'Content-Type': 'application/json'},
+//         body: 
+//     })
+// })

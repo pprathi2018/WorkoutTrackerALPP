@@ -3,6 +3,7 @@ body {
     background-color: #F9D199;
     margin: 0;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    overflow-y: auto;
 }
 
 h1 {
@@ -12,17 +13,20 @@ h1 {
     color: white;
     margin: 0;
     padding: .4em;
+    position: fixed;
+    width: 100%;
+    height: 60px;
 }
 
 nav {
     background-color: #BBDBF7;
     z-index: 9999;
-    top: 0;
-    left: 0;
+    top: 100px;
     width: 100%;
     height: 50px;
     overflow: hidden;
     margin: 0;
+    position: fixed;
 }
   
 nav ul {
@@ -57,3 +61,12 @@ nav ul li:hover {
     color: black;
 
 }
+
+.main-div {
+    top: 150px;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: .5em;
+} 
