@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>WorkoutTracker</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href = "styles.css">
+</head>
+
+<body>
+    <h1>Workout Tracker</h1>
+    <nav>
+        <ul>
+            <li id="home"><a href="/home">Home</a></li>
+            <li id="workout"><a href="/workouts">Workouts</a></li>
+            <li id="analytic"><a href="/analytics">Analytics</a></li>
+            <li id="login"><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+
+    <form action="/exercises" method="POST">
+        <input type="text" placeholder="name" name="name">
+        <input type="text" placeholder="weight" name="weight">
+        <button type="submit">Submit</button>
+    </form>
+    
+    <h2>Exercises</h2>
+    <ul class="exercises">
+        <% for(var i = 0; i < exercises.length; i++) {%>
+            <li class = "exercise">
+                <span><%= exercises[i].name %></span>:
+                <span><%= exercises[i].weight %></span>
+            </li>
+        <% } %>
+    </ul>
+    
+    <div>
+        <h2>Increase your weight!</h2>
+        <p>Increase the weight of your exercises by 10 pounds</p>
+        <button id="increase-weight">Increase Weight</button>
+    </div>
+
+    <div>
+        <h2>Remove an Exercise!</h2>
+        <p>
+            Delete one of the Barbell Exercises. Does nothing if there are no more
+        </p>
+        <button id="delete-exercise">Delete Barbell Exercise</button>
+    </div>
+
+    <div id="message"></div>
+    <script src="/main.js"></script>
+</body>
+</html>
+

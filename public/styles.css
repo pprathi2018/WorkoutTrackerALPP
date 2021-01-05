@@ -1,0 +1,59 @@
+body {
+    /* background-color: #F6E3D4; */
+    background-color: #F9D199;
+    margin: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    font-size: 50px;
+    text-align: center;
+    background-color: #64ABE3;
+    color: white;
+    margin: 0;
+    padding: .4em;
+}
+
+nav {
+    background-color: #BBDBF7;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    margin: 0;
+}
+  
+nav ul {
+    list-style: none;
+    margin-block-start: 0;
+    padding-inline-start: 0;
+}
+  
+nav ul li {
+    margin: 0;
+    color: white;
+    width: 25%;
+    height: 50px;
+    line-height: 50px;
+    align-items: stretch;
+    text-align: center;
+    float: left;
+}
+
+  
+/* Style the links inside the navigation bar */
+nav a {
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+}
+  
+/* Change the color of links on hover */
+nav ul li:hover {
+    background-color: #92C4EE;
+    color: black;
+
+}
