@@ -6,38 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href = "styles.css">
 </head>
-
 <body>
-    <h1>Workout Tracker</h1>
-    <nav>
-        <ul>
-            <li id="home"><a href="/home">Home</a></li>
-            <li id="workouts"><a href="/workouts">Workouts</a></li>
-            <li id="analytics"><a href="/analytics">Analytics</a></li>
-            <li id="login"><a href="/login">Login</a></li>
-        </ul>
-    </nav>
+    <%- include ('navbar.ejs') -%>
+
     <div class="main-div">
+
         <form action="/users" method="PUT">
             <input type="text" placeholder="Username" name="username">
             <input type="text" placeholder="Password" name="password">
             <button id="submit">Login</button>
         </form>
-        
-        <text id="test">TEST</text>
-
-        <form action="/users" method="POST">
-            <input type="text" placeholder="Email" name="email">
-            <input type="text" placeholder="First Name" name="fname">
-            <input type="text" placeholder="Username" name="username">
-            <input type="text" placeholder="Password" name="password">
-            <button type="submit">Sign Up</button>
-        </form>
+        <p >Have you created an account? <a href="/user/signup">Sign Up</a></p>
 
     </div>
-    <script src="main.js">
-            document.getElementById("login").style.backgroundColor = "#92C4EE";
+
+    <script>
     </script>
 </body>
 </html>
-

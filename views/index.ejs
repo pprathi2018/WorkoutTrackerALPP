@@ -8,27 +8,19 @@
 </head>
 
 <body>
-    <h1>Workout Tracker</h1>
-    <nav>
-        <ul>
-            <li id="home"><a href="/home">Home</a></li>
-            <li id="workout"><a href="/workouts">Workouts</a></li>
-            <li id="analytic"><a href="/analytics">Analytics</a></li>
-            <li id="login"><a href="/login">Login</a></li>
-        </ul>
-    </nav>
+    <%- include('navbar.ejs') -%>
 
     <div class="main-div">
         Welcome 'First Name'
 
         <button>Start Workout</button>
         <button>Set goals</button>
-        <!-- <form action="/exercises" method="POST">
+        <form action="/exercises" method="POST">
             <input type="text" placeholder="name" name="name">
             <input type="text" placeholder="weight" name="weight">
             <button type="submit">Submit</button>
         </form>
-        
+
         <h2>Exercises</h2>
         <ul class="exercises">
             <% for(var i = 0; i < exercises.length; i++) {%>
@@ -53,11 +45,10 @@
             <button id="delete-exercise">Delete Barbell Exercise</button>
         </div>
     
-        <div id="message"></div> -->
+        <div id="message"></div>
     </div>
 
-
-        <script src="/main.js"></script>
+    <script src="/main.js"></script>
 </body>
 </html>
 

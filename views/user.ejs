@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>WorkoutTracker</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href = "styles.css">
+</head>
+
+<body>
+    <%- include ('navbar.ejs') -%>
+
+    <div class='main-div'>
+        <h1>Welcome</h1>
+        
+        <p> Create an account or log in to an existing account </p>
+    
+        <a href="/user/signup">Sign Up</a>
+        <a href="/user/login">Login</a>
+        
+    </div>
+
+    <script>
+            document.getElementById("user").style.backgroundColor = "#92C4EE";
+    </script>
+</body>
+</html>
+
