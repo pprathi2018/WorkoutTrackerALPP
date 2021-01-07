@@ -19,7 +19,8 @@ var connection = mongoose.connection;
 var user;
 
 app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({extended: true}));
+//app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.urlencoded({extended : false}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
