@@ -1,3 +1,5 @@
+const { Router } = require("express");
+
 const update = document.querySelector('#increase-weight');
 document.getElementById("home").style.backgroundColor = "#92C4EE";
 
@@ -36,6 +38,10 @@ deleteButton.addEventListener('click', _ => {
         }
     }).catch(error => console.error(error))
 })
+
+// router.get('/home', (req, res) => {
+//     res.render('user.ejs');
+// })
 
 // LOGIN PAGE
 // const loginButton = document.querySelector("#login");

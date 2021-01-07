@@ -8,10 +8,18 @@
 </head>
 <body>
     <%- include ('navbar.ejs') -%>
-
     <div class="main-div">
+        <% if(success_msg != '') { %>
+            <p><%=success_msg %> </p>
+            <% } %>
+        <% if(error_msg != '') { %>
+                <%= error_msg %> 
+              <% } %> 
+              <% if(error != '') { %>
+                <%= error %>
+              <% } %>
 
-        <form action="/users" method="PUT">
+        <form action="/user/login" method="POST">
             <input type="text" placeholder="Username" name="username">
             <input type="text" placeholder="Password" name="password">
             <button id="submit">Login</button>

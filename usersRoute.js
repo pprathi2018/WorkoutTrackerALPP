@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const passport = require('passport');
+// const { ensureAuthentication } = require("../utils/authentication");
 
 const User = require('./models/User.js');
 
@@ -17,13 +19,25 @@ module.exports = function(app) {
         res.render('login.ejs');
     });
 
+    app.get('/home', (req, res) => {
+        res.render('index.ejs', {
+            user: req.user
+        });
+    })
+
+    app.get('/user/logout', (req, res) => {
+        req.logout();
+        req.flash('success_msg', 'Successfully logged out');
+        res.redirect('/user/login');
+    })
+
     app.post('/user/signup', (req, res) => {
         const {username, password, fullname, email} = req.body;
         let errors = []
         if(!username || !password || !fullname || !email) {
             errors.push({msg : "Please fill in all fields"})
         }
-        if(password.length < 6 ) {
+        if(password.length < 1 ) {
             errors.push({msg : 'Password at least 6 characters'})
         }
         if (errors.length > 0) {
@@ -56,6 +70,7 @@ module.exports = function(app) {
                             if (err) throw err;
                             newUser.password = hash;
                             newUser.save().then((value) => {
+                                req.flash('success_msg', 'You are now registered')
                                 res.redirect('/user/login');
                             }).catch((value) => {console.log(value)})
                         })
@@ -65,5 +80,13 @@ module.exports = function(app) {
                 }
             })
         }
+    })
+
+    app.post('/user/login', (req, res, next) => {
+        passport.authenticate('local', {
+            successRedirect : '/home',
+            failureRedirect : '/user/login',
+            failureFlash : true,
+        }) (req, res, next);
     })
 }

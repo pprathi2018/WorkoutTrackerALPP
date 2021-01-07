@@ -3,13 +3,18 @@ console.log("May Node be with you");
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const connectionString = 'mongodb+srv://pprathi2018:Pr01302k1@cluster0.meoms.mongodb.net/WorkoutTrackerDB?retryWrites=true&w=majority'
+const connectionString = 'mongodb+srv://andrewlin573:Alin4523$$@cluster0.bv2vu.mongodb.net/andrewlin573?retryWrites=true&w=majority'
 const mongoose = require('mongoose')
 const port = 3000;
+const session = require('express-session');
+const flash = require('connect-flash');
+const passport = require('passport');
+require("./utils/passport")(passport)
+// const { ensureAuthentication } = require("/utils/authentication");
+
 
 // ------ Models ------ //
 const ExerciseModel = require('./models/Exercise.js')
-
 
 mongoose.connect(connectionString, {useUnifiedTopology: true, useNewUrlParser:true})
     .then(() => console.log('Connected to Database'))
@@ -21,6 +26,21 @@ var user;
 app.set('view engine', 'ejs');
 //app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.urlencoded({extended : false}));
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    next();
+})
+
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
@@ -61,6 +81,7 @@ app.get('/user', (req, res) => {
 // require('./usersRoute')(app);
 
 const User = require('./models/User.js');
+const { ensureAuthenticated } = require('./utils/authentication');
 
 require('./usersRoute')(app)
 
