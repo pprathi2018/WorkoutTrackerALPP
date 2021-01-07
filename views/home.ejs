@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>WorkoutTracker</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href = "styles.css">
+</head>
+
+<body>
+    <%- include('navbar.ejs') -%>
+
+    <div class="main-div">
+        <% if (user) { %>
+            <h2> Hello <%= user.fullname %> !</h1>
+        <% } %>
+    </div>
+
+    <script>
+        document.getElementById("home").style.backgroundColor = "#92C4EE";
+    </script>
+        
+</body>
+</html>
+

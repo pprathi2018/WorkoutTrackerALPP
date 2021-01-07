@@ -3,14 +3,13 @@ console.log("May Node be with you");
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const connectionString = 'mongodb+srv://andrewlin573:Alin4523$$@cluster0.bv2vu.mongodb.net/andrewlin573?retryWrites=true&w=majority'
+const connectionString = 'mongodb+srv://pprathi2018:Pr01302k1@cluster0.meoms.mongodb.net/WorkoutTrackerDB?retryWrites=true&w=majority'
 const mongoose = require('mongoose')
 const port = 3000;
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
 require("./utils/passport")(passport)
-// const { ensureAuthentication } = require("/utils/authentication");
 
 
 // ------ Models ------ //
@@ -38,11 +37,12 @@ app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
-    next();
+next();
 })
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
+const {ensureAuthentication} = require("./utils/authentication");
 
 // ----- ROUTING ----- //
 
@@ -52,36 +52,33 @@ app.get("/", (req, res) => {
     }).catch(error => console.error(error))
 })
 
-app.get('/home', (req, res) => {
-    ExerciseModel.find().then(results => {
-            res.render('index.ejs', {exercises: results});
-    }).catch(error => console.error(error))
-})
-
-app.get('/', (req, res) => {
-    res.render('index.ejs');
-})
-
-app.get('/home', (req, res) => {
-    res.render('index.ejs');
+app.get("/home", (req, res) => {
+    if (req.isAuthenticated()) {
+        res.render('home', {user: req.user});
+    }
+    else {
+        res.redirect('/');
+    }
 })
     
-app.get('/workouts', (req, res) => {
+app.get('/workouts', ensureAuthentication, (req, res) => {
     res.render('workouts.ejs');
 })
 
-app.get('/analytics', (req, res) => {
+app.get('/analytics', ensureAuthentication, (req, res) => {
     res.render('analytics.ejs');
 })
 
 app.get('/user', (req, res) => {
-    res.render('user.ejs');
+    if (req.isAuthenticated()) {
+        res.render('logout.ejs');
+    }
+    else {
+        res.render('user.ejs');
+    }
 })
 
-// require('./usersRoute')(app);
-
 const User = require('./models/User.js');
-const { ensureAuthenticated } = require('./utils/authentication');
 
 require('./usersRoute')(app)
 
