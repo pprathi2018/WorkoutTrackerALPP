@@ -3,7 +3,8 @@ console.log("May Node be with you");
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const connectionString = 'mongodb+srv://pprathi2018:Pr01302k1@cluster0.meoms.mongodb.net/WorkoutTrackerDB?retryWrites=true&w=majority'
+const connectionString = "mongodb+srv://andrewlin573:Alin4523$$@cluster0.bv2vu.mongodb.net/andrewlin573?retryWrites=true&w=majority"
+
 const mongoose = require('mongoose')
 const port = 3000;
 const session = require('express-session');
@@ -47,14 +48,14 @@ const {ensureAuthentication} = require("./utils/authentication");
 // ----- ROUTING ----- //
 
 app.get("/", (req, res) => {
-    ExerciseModel.find().then(results => {
-            res.render('index.ejs', {exercises: results});
-    }).catch(error => console.error(error))
+    res.render('index.ejs', {
+            loginStatus: "Login / Sign-Up"
+    });
 })
 
 app.get("/home", (req, res) => {
     if (req.isAuthenticated()) {
-        res.render('home', {user: req.user});
+        res.render('home', {user: req.user, loginStatus: "Logout"});
     }
     else {
         res.redirect('/');
@@ -62,19 +63,19 @@ app.get("/home", (req, res) => {
 })
     
 app.get('/workouts', ensureAuthentication, (req, res) => {
-    res.render('workouts.ejs');
+    res.render('workouts.ejs', {loginStatus: "Logout"});
 })
 
 app.get('/analytics', ensureAuthentication, (req, res) => {
-    res.render('analytics.ejs');
+    res.render('analytics.ejs', {loginStatus: "Logout"});
 })
 
 app.get('/user', (req, res) => {
     if (req.isAuthenticated()) {
-        res.render('logout.ejs');
+        res.render('logout.ejs', {loginStatus: "Logout"});
     }
     else {
-        res.render('user.ejs');
+        res.render('user.ejs', {loginStatus: "Login / Sign-Up"});
     }
 })
 
@@ -82,32 +83,6 @@ const User = require('./models/User.js');
 
 require('./usersRoute')(app)
 
-/**
-// ----- USERS ----- //
-app.post('/users', (req, res) => {
-    usersCollection.insertOne(req.body).then(result => {
-        res.redirect('/login');
-    }).catch(error => console.error(error))
-})
-
-app.put('/users', (req, res) => {
-    document.getElementById('test').innerHTML("SUCCESS");
-    user = usersCollection.findOne(
-        {
-            username: req.body.username,
-            password: req.body.password
-        }
-    ).then(result => {
-        // document.getElementById('test').innerHTML("SUCCESS, name: " + user.username);
-        res.redirect('/login')
-        // res.json('Success');
-    }).catch(error => console.error(error));
-})
-
-
-// -----  ----- //
-
-*/
 /**
 app.post('/exercises', (req, res) => {
     exercisesCollection.insertOne(req.body).then(result => {

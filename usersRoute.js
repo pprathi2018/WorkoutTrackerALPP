@@ -12,19 +12,15 @@ module.exports = function(app) {
     app.use('/user', express.static('public'));
 
     app.get('/user/signup', (req, res) => {
-        res.render('signup.ejs');
+        res.render('signup.ejs', {loginStatus: "Login / Sign-Up"});
     });
 
     app.get('/user/login', (req, res) => {
-        res.render('login.ejs');
+        res.render('login.ejs', {loginStatus: "Login / Sign-Up"});
     });
 
     app.get('/home/login', (req, res) => {
-        res.redirect('/home', {
-            user: req.user
-        });
-        // console.log('Hello');
-        // console.log(req.user);
+        res.redirect('/home');
     })
 
     app.get('/user/logout', (req, res) => {
@@ -48,7 +44,8 @@ module.exports = function(app) {
                 username: username,
                 password: password,
                 fullname: fullname,
-                email: email })
+                email: email,
+                loginStatus: "Login / Sign-Up" })
         } else {
             User.findOne({username: username}).exec((err, user) => {
                 console.log(user);
@@ -59,7 +56,8 @@ module.exports = function(app) {
                         username: username,
                         password: password,
                         fullname: fullname,
-                        email: email });
+                        email: email,
+                        loginStatus: "Login / Sign-Up" });
                 } else {
                     const newUser = new User({
                         username: username,

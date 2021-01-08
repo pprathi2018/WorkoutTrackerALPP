@@ -1,6 +1,41 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const goalSchema = new Schema({
+    name: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    start: Number,
+    goal: Number
+});
+
+const exerciseSchema = new Schema({
+    name: String,
+    type: String
+})
+
+const routineSchema = new Schema({
+    name: String,
+    exercises: [{exerciseSchema, 
+        reps: Number, 
+        sets: Number
+        }]
+});
+
+const workoutSchema = new Schema({
+    name: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    duration: Number,
+    weightLifted: Number,
+    date: Date,
+    baseRoutine: [routineSchema]
+});
+
 const userSchema = new Schema({
     username: {
         type: String,
@@ -17,6 +52,13 @@ const userSchema = new Schema({
     },
     email: {
         type: String,
+    },
+    goals: [goalSchema],
+    workouts: [workoutSchema],
+    routines: [routineSchema],
+    customExercises: {
+        type: Map,
+        of: Number
     }
 });
 

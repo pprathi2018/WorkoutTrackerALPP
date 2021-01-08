@@ -12,12 +12,51 @@
 
     <div class="main-div">
         <% if (user) { %>
-            <h2> Hello <%= user.fullname %> !</h1>
+            <h2> Welcome Back <%= user.fullname %> !</h1>
         <% } %>
+
+        <button>Start Workout</button>
+        <button id="goals-btn">Set Goals</button>
+
+        <div id="workout">
+            
+        </div>
+
+        <div id="goals-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form action="/goals" method="POST">
+                    <h2>UPDATE GOALS</h2>
+                    <div id="goals-gen">
+                        <h3>General</h3>
+                        <div id="genGoal-weight">
+                            <label class="modal-label">Weight</label>
+                            <input type="text" placeholder="Current Weight" name="curWeight">
+                            <input type="text" placeholder="Desired Weight" name="desWeight">
+                        </div>
+                    </div>
+                    <input type="text" placeholder="Enter general goal" id="addGGInput">
+                    <button type="button" id="addGenGoalBtn" class="add-button">+</button>
+
+                    <div id="goals-lift">
+                        <h3>Lifts</h3>
+                        <div id="liftGoal-BP">
+                            <label>Bench Press</label>
+                            <input type="text" placeholder="Current PR" name="curBP">
+                            <input type="text" placeholder="Desired PR" name="desBP">
+                        </div>
+
+                    </div>
+                    <input type="text" placeholder="Enter lift goal" id="addLiftGoalInput">
+                    <button type="button" id="addLiftGoalBtn" class="add-button">+</button>
+
+                    <button id="apply" class="applyBtn">Apply</button>
+                </form>
+              </div>
+        </div>
     </div>
 
-    <script>
-        document.getElementById("home").style.backgroundColor = "#92C4EE";
+    <script src="main.js">
     </script>
         
 </body>
