@@ -46,31 +46,35 @@ app.use(express.static(__dirname + '/public'));
 
 // ----- ROUTING ----- //
 
-app.get("/", (req, res) => {
-    ExerciseModel.find().then(results => {
-            res.render('index.ejs', {exercises: results});
-    }).catch(error => console.error(error))
-})
+// app.get("/", (req, res) => {
+//     ExerciseModel.find().then(results => {
+//             res.render('index.ejs', {exercises: results});
+//     }).catch(error => console.error(error))
+// })
 
-app.get('/home', (req, res) => {
-    ExerciseModel.find().then(results => {
-            res.render('index.ejs', {exercises: results});
-    }).catch(error => console.error(error))
-})
+// app.get('/home', (req, res) => {
+//     ExerciseModel.find().then(results => {
+//             res.render('index.ejs', {exercises: results});
+//     }).catch(error => console.error(error))
+// })
 
 app.get('/', (req, res) => {
     res.render('index.ejs');
 })
 
 app.get('/home', (req, res) => {
-    res.render('index.ejs');
+    res.render('index.ejs', {
+        user: req.user
+    });
+    // console.log('Hello');
+    // console.log(req.user);
 })
     
 app.get('/workouts', (req, res) => {
     res.render('workouts.ejs');
 })
 
-app.get('/analytics', (req, res) => {
+app.get('/analytics', (req, res) => { 
     res.render('analytics.ejs');
 })
 

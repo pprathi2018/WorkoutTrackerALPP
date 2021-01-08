@@ -12,41 +12,50 @@
 
     <div class="main-div">
 
-        <button>Start Workout</button>
-        <button>Set goals</button>
-        <form action="/exercises" method="POST">
-            <input type="text" placeholder="name" name="name">
-            <input type="text" placeholder="weight" name="weight">
-            <button type="submit">Submit</button>
-        </form>
+        <% var user; %>
+        <p><% if (typeof user !== 'undefined') {user.username}%></p>
 
-        <h2>Exercises</h2>
-        <ul class="exercises">
-            <% for(var i = 0; i < exercises.length; i++) {%>
-                <li class = "exercise">
-                    <span><%= exercises[i].name %></span>:
-                    <span><%= exercises[i].weight %></span>
-                </li>
-            <% } %>
-        </ul>
-        
-        <div>
-            <h2>Increase your weight!</h2>
-            <p>Increase the weight of your exercises by 10 pounds</p>
-            <button id="increase-weight">Increase Weight</button>
+        <button>Start Workout</button>
+        <button id="goals-btn">Set Goals</button>
+
+        <div id="goals-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form action="/goals" method="POST">
+                    <h2>UPDATE GOALS</h2>
+                    <div id="goals-gen">
+                        <h3>General</h3>
+                        <div id="genGoal-weight">
+                            <label class="modal-label">Weight</label>
+                            <input type="text" placeholder="Current Weight" name="curWeight">
+                            <input type="text" placeholder="Desired Weight" name="desWeight">
+                        </div>
+                    </div>
+                    <input type="text" placeholder="Enter general goal" id="addGGInput">
+                    <button type="button" id="addGenGoalBtn" class="add-button">+</button>
+
+                    <div id="goals-lift">
+                        <h3>Lifts</h3>
+                        <div id="liftGoal-BP">
+                            <label>Bench Press</label>
+                            <input type="text" placeholder="Current PR" name="curBP">
+                            <input type="text" placeholder="Desired PR" name="desBP">
+                        </div>
+
+                    </div>
+                    <input type="text" placeholder="Enter lift goal" id="addLiftGoalInput">
+                    <button type="button" id="addLiftGoalBtn" class="add-button">+</button>
+
+                    <button id="apply" class="applyBtn">Apply</button>
+                </form>
+              </div>
         </div>
-    
-        <div>
-            <h2>Remove an Exercise!</h2>
-            <p>
-                Delete one of the Barbell Exercises. Does nothing if there are no more
-            </p>
-            <button id="delete-exercise">Delete Barbell Exercise</button>
-        </div>
-    
-        <div id="message"></div>
+
     </div>
 
+    <!-- <script>
+        document.getElementById("home").style.backgroundColor = "#92C4EE";
+    </script>  -->
     <script src="/main.js"></script>
 </body>
 </html>
