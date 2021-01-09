@@ -15,6 +15,8 @@ require("./utils/passport")(passport)
 
 // ------ Models ------ //
 const ExerciseModel = require('./models/Exercise.js')
+const { goalSchema } = require('./models/User.js');
+const { userSchema } = require('./models/User.js');
 
 mongoose.connect(connectionString, {useUnifiedTopology: true, useNewUrlParser:true})
     .then(() => console.log('Connected to Database'))
@@ -55,7 +57,8 @@ app.get("/", (req, res) => {
 
 app.get("/home", (req, res) => {
     if (req.isAuthenticated()) {
-        res.render('home', {user: req.user, loginStatus: "Logout"});
+        user = req.user;
+        res.render('home', {user, loginStatus: "Logout"});
     }
     else {
         res.redirect('/');
@@ -82,6 +85,41 @@ app.get('/user', (req, res) => {
 const User = require('./models/User.js');
 
 require('./usersRoute')(app)
+
+app.post('/updateGoals', (req, res) => {
+    var i = 0;
+    var temp;
+    for (let g in req.body) {
+        if (i == 0) {
+            temp = req.body[g];
+            i++;
+        } else {
+            var newGoal = new goalSchema({
+                name: g.substring(7),
+                start: temp,
+                goal: req.body[g]
+            });
+            userSchema.findOneAndUpdate(
+                { username: user.username },
+                {
+                    "$push": {"goals": newGoal} 
+                },
+                {
+                    new: true,
+                    upsert: true
+                }
+            ).catch(error => console.error(error))
+
+            newGoal.save((err, data) => {
+                if (err) {
+                    console.log(err);
+                }
+            });
+            i--;
+        }
+    }
+    res.redirect('/home');
+})
 
 /**
 app.post('/exercises', (req, res) => {

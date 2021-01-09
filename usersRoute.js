@@ -4,9 +4,8 @@ const app = express();
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
-// const { ensureAuthentication } = require("../utils/authentication");
 
-const User = require('./models/User.js');
+const { userSchema } = require('./models/User.js');
 
 module.exports = function(app) {
     app.use('/user', express.static('public'));
@@ -47,7 +46,7 @@ module.exports = function(app) {
                 email: email,
                 loginStatus: "Login / Sign-Up" })
         } else {
-            User.findOne({username: username}).exec((err, user) => {
+            userSchema.findOne({username: username}).exec((err, user) => {
                 console.log(user);
                 if (user) {
                     errors.push({msg : 'Username is already registered!'});
@@ -59,7 +58,7 @@ module.exports = function(app) {
                         email: email,
                         loginStatus: "Login / Sign-Up" });
                 } else {
-                    const newUser = new User({
+                    const newUser = new userSchema({
                         username: username,
                         password: password,
                         fullname: fullname,

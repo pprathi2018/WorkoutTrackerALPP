@@ -1,11 +1,11 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
-const User = require("../models/User.js");
+const { userSchema } = require("../models/User.js");
 
 module.exports = function(passport) {
     passport.use(
         new LocalStrategy({usernameField: 'username'}, (username, password, done) => {
-            User.findOne({username : username}).then((user) => {
+            userSchema.findOne({username : username}).then((user) => {
                 if (!user) {
                     done(null, false, {message: 'That username is not registered.'});
                 }
@@ -31,7 +31,7 @@ module.exports = function(passport) {
     });
 
     passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
+        userSchema.findById(id, function(err, user) {
             done(null, user);
         });
     });

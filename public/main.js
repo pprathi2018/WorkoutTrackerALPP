@@ -101,6 +101,9 @@ addGoal = (divToAdd, inputVal, isLiftGoal) => {
         input2.placeholder = "Desired " + inputVal;
     }
 
+    input1.name = "current" + inputVal;
+    input2.name = "desired" + inputVal;
+
     var deleteBtn = document.createElement("button");
     deleteBtn.innerHTML = "&times;";
     deleteBtn.type = "button";

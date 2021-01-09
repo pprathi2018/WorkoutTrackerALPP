@@ -19,20 +19,20 @@
         <button id="goals-btn">Set Goals</button>
 
         <div id="workout">
-            
+
         </div>
 
         <div id="goals-modal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <form action="/goals" method="POST">
+                <form action="/updateGoals" method="POST">
                     <h2>UPDATE GOALS</h2>
                     <div id="goals-gen">
                         <h3>General</h3>
                         <div id="genGoal-weight">
-                            <label class="modal-label">Weight</label>
-                            <input type="text" placeholder="Current Weight" name="curWeight">
-                            <input type="text" placeholder="Desired Weight" name="desWeight">
+                            <label class="modal-label" name="Weight">Weight</label>
+                            <input type="text" placeholder="Current Weight" name="currentWeight">
+                            <input type="text" placeholder="Desired Weight" name="desiredWeight">
                         </div>
                     </div>
                     <input type="text" placeholder="Enter general goal" id="addGGInput">
@@ -42,15 +42,16 @@
                         <h3>Lifts</h3>
                         <div id="liftGoal-BP">
                             <label>Bench Press</label>
-                            <input type="text" placeholder="Current PR" name="curBP">
-                            <input type="text" placeholder="Desired PR" name="desBP">
+                            <input type="text" placeholder="Current PR" name="currentBP">
+                            <input type="text" placeholder="Desired PR" name="desiredBP">
                         </div>
 
                     </div>
                     <input type="text" placeholder="Enter lift goal" id="addLiftGoalInput">
                     <button type="button" id="addLiftGoalBtn" class="add-button">+</button>
-
-                    <button id="apply" class="applyBtn">Apply</button>
+                    <br>
+                    <button id="clear" type="button" >Clear</button>
+                    <button id="apply" type="submit" class="applyBtn">Apply</button>
                 </form>
               </div>
         </div>

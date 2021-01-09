@@ -7,8 +7,8 @@ const goalSchema = new Schema({
         required: true,
         unique: true
     },
-    start: Number,
-    goal: Number
+    start: String,
+    goal: String
 });
 
 const exerciseSchema = new Schema({
@@ -62,4 +62,9 @@ const userSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('user', userSchema, 'users');
+module.exports = {
+    userSchema: mongoose.model('user', userSchema, 'users'),
+    goalSchema: mongoose.model('goal', goalSchema, 'goals')
+};
+
+// module.exports = mongoose.model('user', userSchema, 'users');
