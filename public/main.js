@@ -41,7 +41,7 @@ document.getElementById("home").style.backgroundColor = "#92C4EE";
 
 var gmodal = document.getElementById("goals-modal");
 var gbtn = document.getElementById("goals-btn");
-var span = document.getElementsByClassName("close")[0];
+var gspan = document.getElementsByClassName("close")[0];
 var genGoalsDiv = document.getElementById("goals-gen");
 var genGoalsBtn = document.getElementById("addGenGoalBtn");
 var genGoalsInput = document.getElementById("addGGInput");
@@ -49,20 +49,33 @@ var liftGoalsDiv = document.getElementById("goals-lift");
 var liftGoalsBtn = document.getElementById("addLiftGoalBtn");
 var liftGoalsInput = document.getElementById("addLiftGoalInput");
 
+var wmodal = document.getElementById("workout-modal");
+var wbtn = document.getElementById("startWorkout");
+// var wspan = document.getElementsByClassName("close")[0];
+var addExerciseBtn = document.getElementById("addExerciseBtn");
+var workoutDiv = document.getElementById("exercises");
+var addExerciseInput = document.getElementById("addExercise");
+
 // When the user clicks on the button, open the modal
 gbtn.onclick = function() {
   gmodal.style.display = "block";
 }
 
+wbtn.onclick = function() {
+  wmodal.style.display = "block";
+}
+
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
+gspan.onclick = function() {
   gmodal.style.display = "none";
+  wmodal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == gmodal) {
     gmodal.style.display = "none";
+    wmodal.style.display = "none";
   }
 }
 
@@ -120,8 +133,45 @@ addGoal = (divToAdd, inputVal, isLiftGoal) => {
     divToAdd.appendChild(newGoal);
 }
 
-// Remove the goal
-deleteGoal = (id) => {
+addExerciseBtn.onclick = () => {
+  var inputVal = addExerciseInput.value;
 
-    // return toDelete.parentElement.removeChild(toDelete);
+  var newEx = document.createElement("div");
+  newEx.id = inputVal + "div";
+
+  var newLbl = document.createElement("label");
+  newLbl.className = "modal-label";
+  newLbl.innerHTML = inputVal;
+
+  var input1 = document.createElement("input");
+  input1.type = "text";
+  input1.placeholder = "Sets";
+  input1.name = "sets" + inputVal;
+
+
+  var input2 = document.createElement("input");
+  input2.type = "text";
+  input2.placeholder = "Reps";
+  input2.name = "reps" + inputVal;
+
+  var input3 = document.createElement("input");
+  input3.type = "text";
+  input3.placeholder = "Weight";
+  input3.name = "weight" + inputVal;
+
+  var deleteBtn = document.createElement("button");
+  deleteBtn.innerHTML = "&times;";
+  deleteBtn.type = "button";
+  deleteBtn.id =  inputVal + "btn";
+  deleteBtn.onclick = () => {
+      var toDelete = document.getElementById(newEx.id);
+      toDelete.remove();
+  }
+
+  newEx.appendChild(newLbl);
+  newEx.appendChild(input1);
+  newEx.appendChild(input2);
+  newEx.appendChild(input3);
+  newEx.appendChild(deleteBtn);
+  workoutDiv.appendChild(newEx);
 }

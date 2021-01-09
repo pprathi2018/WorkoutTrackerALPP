@@ -15,11 +15,31 @@
             <h2> Welcome Back <%= user.fullname %> !</h1>
         <% } %>
 
-        <button>Start Workout</button>
+        <button id="startWorkout">Start Workout</button>
         <button id="goals-btn">Set Goals</button>
 
-        <div id="workout">
+        <div id="workout-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form action="/finishWorkout" method="POST">
+                    <h2>EXERCISE TRACKER</h2>
 
+                    <label class="modal-label">Workout Name:</label>
+                    <input type="text" placeholder="Enter Workout Name" name="workoutName">
+                    <label class="modal-label" id="timer">Time: 0s</label>
+                    <button type="button" id="startTimer" class="add-button">Start / Stop Timer</button>
+                    <label class="modal-label" id="total">Total Weight Lifted</label>
+
+                    <div id="exercises">
+                        <h3>Exercises</h3>
+                    </div>
+                    <input type="text" placeholder="Add new exercise" id="addExercise">
+                    <button type="button" id="addExerciseBtn" class="add-button">+</button>
+
+
+                    <button id="finish" type="submit" class="applyBtn">Finish</button>
+                </form>
+              </div>
         </div>
 
         <div id="goals-modal" class="modal">
