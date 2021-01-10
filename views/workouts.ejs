@@ -11,13 +11,53 @@
     <%- include ('navbar.ejs') -%>
 
     <div class="main-div">
-        <div class="workout-div">Past Workouts</div>
-        <div class="workout-div">Routines</div>
-        <div class="workout-div">Exercises</div>
+        <div class="workout-div" id="workoutHistoryDiv">
+            <h2>Past Workouts</h2>
+
+            <% for(var i = 0; i < workouts.length; i++) {%> 
+                    <button class="collapsible">
+                        <% w = workouts[i]; %>
+                        <%= w.name %>
+                    </button>
+                    <div class="collapsible-content">
+                        <% for (var j = 0; j < w.exercises.length; j++) {%>
+                            <p>
+                                <% e = w.exercises[j]; %>
+                                <%= e.name %>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                Sets: <%= e.sets %>
+                                Reps: <%= e.reps %>
+                                Weight: <%= e.weight %>
+                            </p>
+
+                        <%}%>
+                    </div>
+                <%
+            }%>
+        </div>
+        <!-- <div class="workout-div">Routines</div>
+        <div class="workout-div">Exercises</div> -->
     </div>
 
     <script>
-            document.getElementById("workouts").style.backgroundColor = "#92C4EE";
+        document.getElementById("workouts").style.backgroundColor = "#92C4EE";
+
+        var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+
+//                        , workouts[i].date, workouts[1].duration, workouts[1].weightLifted 
     </script>
 </body>
 </html>

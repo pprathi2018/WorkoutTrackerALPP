@@ -13,16 +13,20 @@ const goalSchema = new Schema({
 
 const exerciseSchema = new Schema({
     name: String,
-    type: String
+    type: String,
+    sets: Number,
+    reps: Number,
+    weight: Number,
 })
 
-const routineSchema = new Schema({
-    name: String,
-    exercises: [{exerciseSchema, 
-        reps: Number, 
-        sets: Number
-        }]
-});
+// const routineSchema = new Schema({
+//     name: String,
+//     exercises: [{exerciseSchema, 
+//         reps: Number, 
+//         sets: Number,
+//         weight: Number
+//         }]
+// });
 
 const workoutSchema = new Schema({
     name: {
@@ -33,7 +37,8 @@ const workoutSchema = new Schema({
     duration: Number,
     weightLifted: Number,
     date: Date,
-    baseRoutine: [routineSchema]
+    exercises: [exerciseSchema]
+    // baseRoutine: [routineSchema]
 });
 
 const userSchema = new Schema({
@@ -55,7 +60,7 @@ const userSchema = new Schema({
     },
     goals: [goalSchema],
     workouts: [workoutSchema],
-    routines: [routineSchema],
+    // routines: [routineSchema],
     customExercises: {
         type: Map,
         of: Number
@@ -64,7 +69,9 @@ const userSchema = new Schema({
 
 module.exports = {
     userSchema: mongoose.model('user', userSchema, 'users'),
-    goalSchema: mongoose.model('goal', goalSchema, 'goals')
+    goalSchema: mongoose.model('goal', goalSchema, 'goals'),
+    exerciseSchema: mongoose.model('exercise', exerciseSchema, 'exercises'),
+    workoutSchema: mongoose.model('workout', workoutSchema, 'workouts')
 };
 
 // module.exports = mongoose.model('user', userSchema, 'users');
