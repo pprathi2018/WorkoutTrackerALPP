@@ -41,7 +41,7 @@ document.getElementById("home").style.backgroundColor = "#92C4EE";
 
 var gmodal = document.getElementById("goals-modal");
 var gbtn = document.getElementById("goals-btn");
-var gspan = document.getElementsByClassName("close")[0];
+var gspan = document.getElementsByClassName("close")[1];
 var genGoalsDiv = document.getElementById("goals-gen");
 var genGoalsBtn = document.getElementById("addGenGoalBtn");
 var genGoalsInput = document.getElementById("addGGInput");
@@ -51,7 +51,7 @@ var liftGoalsInput = document.getElementById("addLiftGoalInput");
 
 var wmodal = document.getElementById("workout-modal");
 var wbtn = document.getElementById("startWorkout");
-// var wspan = document.getElementsByClassName("close")[0];
+var wspan = document.getElementsByClassName("close")[0];
 var addExerciseBtn = document.getElementById("addExerciseBtn");
 var workoutDiv = document.getElementById("exercises");
 var addExerciseInput = document.getElementById("addExercise");
@@ -68,6 +68,9 @@ wbtn.onclick = function() {
 // When the user clicks on <span> (x), close the modal
 gspan.onclick = function() {
   gmodal.style.display = "none";
+}
+
+wspan.onClick = function() {
   wmodal.style.display = "none";
 }
 
@@ -75,6 +78,7 @@ gspan.onclick = function() {
 window.onclick = function(event) {
   if (event.target == gmodal) {
     gmodal.style.display = "none";
+  } else if (event.target == wmodal) {
     wmodal.style.display = "none";
   }
 }
@@ -82,15 +86,19 @@ window.onclick = function(event) {
 // Adds a general goal
 genGoalsBtn.onclick = () => {
     var inputValue = genGoalsInput.value;
-    addGoal(genGoalsDiv, inputValue);
-    genGoalsInput.value = "";
+    if (inputValue != "") {
+      addGoal(genGoalsDiv, inputValue);
+      genGoalsInput.value = "";
+    }
 }
 
 // Adds a lift goal
 liftGoalsBtn.onclick = () => {
     var inputValue = liftGoalsInput.value;
-    addGoal(liftGoalsDiv, inputValue, true);
-    liftGoalsInput.value = "";
+    if (inputValue != "") {
+      addGoal(liftGoalsDiv, inputValue, true);
+      liftGoalsInput.value = "";
+    }
 }
 
 addGoal = (divToAdd, inputVal, isLiftGoal) => {
@@ -115,7 +123,18 @@ addGoal = (divToAdd, inputVal, isLiftGoal) => {
     }
 
     input1.name = "current" + inputVal;
-    input2.name = "desired" + inputVal;
+    input2.name = "desired" +  inputVal;
+
+    var hiddenInput = document.createElement("input");
+    hiddenInput.type = "hidden";
+
+    if (isLiftGoal) {
+      hiddenInput.name = "hidden-" + inputVal;
+      hiddenInput.value = "Lift";
+    } else {
+      hiddenInput.name = "hidden-" + inputVal;
+      hiddenInput.value = "General";
+    }
 
     var deleteBtn = document.createElement("button");
     deleteBtn.innerHTML = "&times;";
@@ -129,6 +148,7 @@ addGoal = (divToAdd, inputVal, isLiftGoal) => {
     newGoal.appendChild(newLbl);
     newGoal.appendChild(input1);
     newGoal.appendChild(input2);
+    newGoal.appendChild(hiddenInput);
     newGoal.appendChild(deleteBtn);
     divToAdd.appendChild(newGoal);
 }

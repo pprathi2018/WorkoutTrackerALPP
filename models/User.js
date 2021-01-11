@@ -8,7 +8,8 @@ const goalSchema = new Schema({
         unique: true
     },
     start: String,
-    goal: String
+    goal: String,
+    type: String
 });
 
 const exerciseSchema = new Schema({

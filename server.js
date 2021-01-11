@@ -3,7 +3,7 @@ console.log("May Node be with you");
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const connectionString = "mongodb+srv://andrewlin573:Alin4523$$@cluster0.bv2vu.mongodb.net/andrewlin573?retryWrites=true&w=majority"
+const connectionString = "mongodb+srv://pprathi2018:Pr01302k1@cluster0.meoms.mongodb.net/WorkoutTrackerDB?retryWrites=true&w=majority"
 
 const mongoose = require('mongoose')
 const port = 3000;
@@ -59,6 +59,8 @@ app.get("/home", (req, res) => {
     if (req.isAuthenticated()) {
         user = req.user;
         res.render('home', {user, loginStatus: "Logout"});
+        console.log(user.goals);
+
     }
     else {
         res.redirect('/');
@@ -86,19 +88,51 @@ const User = require('./models/User.js');
 
 require('./usersRoute')(app)
 
-app.post('/updateGoals', (req, res) => {
+app.post('/updateGoals', async (req, res) => {
+    console.log(req.body);
     var i = 0;
-    var temp;
+    var curGoal;
+    var desGoal;
     for (let g in req.body) {
         if (i == 0) {
-            temp = req.body[g];
+            curGoal = req.body[g];
+            i++;
+        } else if (i == 1) {
+            desGoal = req.body[g];
             i++;
         } else {
+            if (curGoal === null || desGoal === null ||
+                curGoal == '' || desGoal == '') {
+                i = 0;
+                continue;
+            }
             var newGoal = new goalSchema({
                 name: g.substring(7),
-                start: temp,
-                goal: req.body[g]
+                start: curGoal,
+                goal: desGoal,
+                type: req.body[g]
             });
+
+            var foundCopy = false;
+
+            const curUser = await userSchema.findOne({username: user.username})
+            curUserGoals = curUser.goals;
+
+            for (const [i, goal] of curUserGoals.entries()) {
+                if (goal.name == g.substring(7)) {
+                    curUserGoals[i] = newGoal;
+                    const doc = await curUser.save()
+                    foundCopy = true;
+                    break;
+                }
+            }
+
+            if (foundCopy) {
+                founcCopy = false;
+                i = 0;
+                continue;
+            }
+            
             userSchema.findOneAndUpdate(
                 { username: user.username },
                 {
@@ -109,13 +143,7 @@ app.post('/updateGoals', (req, res) => {
                     upsert: true
                 }
             ).catch(error => console.error(error))
-
-            newGoal.save((err, data) => {
-                if (err) {
-                    console.log(err);
-                }
-            });
-            i--;
+            i = 0;
         }
     }
     res.redirect('/home');
