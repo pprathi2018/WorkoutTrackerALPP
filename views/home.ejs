@@ -20,7 +20,7 @@
 
         <div id="workout-modal" class="modal">
             <div class="modal-content">
-                <span class="close">&times;</span>
+                <span class="close" id="wspan">&times;</span>
                 <form action="/finishWorkout" method="POST">
                     <h2>EXERCISE TRACKER</h2>
 
@@ -41,12 +41,12 @@
 
                     <button id="finish" type="submit" class="applyBtn">Finish</button>
                 </form>
-              </div>
+            </div>
         </div>
 
         <div id="goals-modal" class="modal">
             <div class="modal-content">
-                <span class="close">&times;</span>
+                <span class="close" id="gspan">&times;</span>
                 <form action="/updateGoals" method="POST">
                     <h2>UPDATE GOALS</h2>
                     <div id="goals-gen">
@@ -55,6 +55,7 @@
                             <label class="modal-label" name="Weight">Weight</label>
                             <input type="text" placeholder="Current Weight" name="currentWeight">
                             <input type="text" placeholder="Desired Weight" name="desiredWeight">
+                            <input type="hidden" name="hidden-Weight" value="General">
                         </div>
                     </div>
                     <input type="text" placeholder="Enter general goal" id="addGGInput">
@@ -66,6 +67,7 @@
                             <label>Bench Press</label>
                             <input type="text" placeholder="Current PR" name="currentBP">
                             <input type="text" placeholder="Desired PR" name="desiredBP">
+                            <input type="hidden" name="hidden-BP" value="Lift">
                         </div>
 
                     </div>
@@ -75,11 +77,39 @@
                     <button id="clear" type="button" >Clear</button>
                     <button id="apply" type="submit" class="applyBtn">Apply</button>
                 </form>
-              </div>
+            </div>
+        </div>
+        <div style="margin-top:100px">
+            <h2>Here are your current goals!</h2>
+            <div id="general-goalsdisplay">
+                <h3>General Goals:</h4>
+            </div>
+            <div id="lift-goalsdisplay">
+                <h3>Lift Goals:</h4>
+            </div>
         </div>
     </div>
 
+    <% userGoals = user.goals %>
+
     <script src="main.js">
+    </script>
+    <script>
+
+        var genDisplayDiv = document.getElementById("general-goalsdisplay");
+        var liftDisplayDiv = document.getElementById("lift-goalsdisplay");
+
+        "<%userGoals.forEach(function(goal) {%>"
+            var pGoal = document.createElement("p")
+            pGoal.innerHTML = "<%-goal.name%>" + " - Start: " + "<%-goal.start%>" + " Goal: " + "<%-goal.goal%>" 
+            pGoal.style.marginLeft = "25px";
+            if ("<%-goal.type%>" == "General") {
+                genDisplayDiv.appendChild(pGoal);
+            } else {
+                liftDisplayDiv.appendChild(pGoal);
+            }
+        "<%});%>"
+            
     </script>
         
 </body>

@@ -86,15 +86,19 @@ window.onclick = function(event) {
 // Adds a general goal
 genGoalsBtn.onclick = () => {
     var inputValue = genGoalsInput.value;
-    addGoal(genGoalsDiv, inputValue);
-    genGoalsInput.value = "";
+    if (inputValue != "") {
+      addGoal(genGoalsDiv, inputValue);
+      genGoalsInput.value = "";
+    }
 }
 
 // Adds a lift goal
 liftGoalsBtn.onclick = () => {
     var inputValue = liftGoalsInput.value;
-    addGoal(liftGoalsDiv, inputValue, true);
-    liftGoalsInput.value = "";
+    if (inputValue != "") {
+      addGoal(liftGoalsDiv, inputValue, true);
+      liftGoalsInput.value = "";
+    }
 }
 
 addGoal = (divToAdd, inputVal, isLiftGoal) => {
@@ -119,7 +123,18 @@ addGoal = (divToAdd, inputVal, isLiftGoal) => {
     }
 
     input1.name = "current" + inputVal;
-    input2.name = "desired" + inputVal;
+    input2.name = "desired" +  inputVal;
+
+    var hiddenInput = document.createElement("input");
+    hiddenInput.type = "hidden";
+
+    if (isLiftGoal) {
+      hiddenInput.name = "hidden-" + inputVal;
+      hiddenInput.value = "Lift";
+    } else {
+      hiddenInput.name = "hidden-" + inputVal;
+      hiddenInput.value = "General";
+    }
 
     var deleteBtn = document.createElement("button");
     deleteBtn.innerHTML = "&times;";
@@ -133,6 +148,7 @@ addGoal = (divToAdd, inputVal, isLiftGoal) => {
     newGoal.appendChild(newLbl);
     newGoal.appendChild(input1);
     newGoal.appendChild(input2);
+    newGoal.appendChild(hiddenInput);
     newGoal.appendChild(deleteBtn);
     divToAdd.appendChild(newGoal);
 }
