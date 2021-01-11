@@ -72,12 +72,12 @@ nav ul li:hover {
 
 .workout-div {
     float: left;
-    display: block;
-    width: 33%;
+    width: 50%;
+    /* display: block;
     height: 100%;
     text-align: center;
     background-color: #ffffff;
-    overflow: hidden;
+    overflow: hidden; */
 }
 
 /* The Modal (background) */
@@ -139,6 +139,7 @@ nav ul li:hover {
     outline: none;
     font-size: 15px;
     margin: 5px;
+    margin-bottom: 0;
     border-radius: 30px;
 }
 
@@ -165,4 +166,11 @@ nav ul li:hover {
     transition: max-height 0.2s ease-out;
     background-color: #f1f1f1;
     text-align: left;
+    width: 94%;
+    border-radius: 30px;
+
+}
+
+.hiddenInput {
+    display: none;
 }

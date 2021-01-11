@@ -137,12 +137,15 @@ app.post('/finishWorkout', (req, res) => {
     var workout = req.body;
     const wName = workout.workoutName;
     delete workout.workoutName;
+    const dur = workout.duration;
+    delete workout.duration;
     var i = 0;
 
     var numSets;
     var numReps;
     var exerciseName;
     var exercises = [];
+    var totalWeightLifted = 0;
 
     for (let e in workout) {
         if (i == 0) {
@@ -160,18 +163,23 @@ app.post('/finishWorkout', (req, res) => {
                 weight: workout[e]
             });
             exercises.push(exercise);
+            totalWeightLifted += numSets * numReps * workout[e];
             i = 0;
         }
     }
+    var d = new Date();
     var newWorkout = new workoutSchema({
         name: wName,
+        duration: dur,
+        weightLifted: totalWeightLifted,
+        date: d.toDateString(),
         exercises: exercises
     })
 
     userSchema.findOneAndUpdate(
         { username: user.username },
         {
-            "$push": {"workouts": newWorkout}
+            "$push": {"workouts": newWorkout, "$position": 0}
         },
         {
             new: true,

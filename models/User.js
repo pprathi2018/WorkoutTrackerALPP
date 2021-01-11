@@ -36,7 +36,7 @@ const workoutSchema = new Schema({
     },
     duration: Number,
     weightLifted: Number,
-    date: Date,
+    date: String,
     exercises: [exerciseSchema]
     // baseRoutine: [routineSchema]
 });

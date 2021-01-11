@@ -17,7 +17,10 @@
             <% for(var i = 0; i < workouts.length; i++) {%> 
                     <button class="collapsible">
                         <% w = workouts[i]; %>
-                        <%= w.name %>
+                        <%= w.name%> -
+                        <%= w.date%>, 
+                        <%= w.duration%>s,
+                        <%= w.weightLifted %>lbs
                     </button>
                     <div class="collapsible-content">
                         <% for (var j = 0; j < w.exercises.length; j++) {%>
@@ -34,6 +37,10 @@
                     </div>
                 <%
             }%>
+        </div>
+
+        <div id="exercises">
+            <h2>Exercises</h2>
         </div>
         <!-- <div class="workout-div">Routines</div>
         <div class="workout-div">Exercises</div> -->
