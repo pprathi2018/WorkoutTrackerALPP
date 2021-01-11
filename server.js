@@ -60,7 +60,8 @@ app.get("/", (req, res) => {
 app.get("/home", (req, res) => {
     if (req.isAuthenticated()) {
         user = req.user;
-        res.render('home', {user, loginStatus: "Logout"});
+        goals = user.goals;
+        res.render('home', {user, goals, loginStatus: "Logout"});
         console.log(user.goals);
 
     }
