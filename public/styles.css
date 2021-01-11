@@ -57,7 +57,8 @@ nav a {
     color: #0c0c0c;
     text-align: center;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 15px;
+    text-transform: uppercase;
 }
   
 /* Change the color of links on hover */
@@ -127,6 +128,7 @@ h3 {
   
 /* Modal Content/Box */
 .modal-content {
+    /* background: linear-gradient(to bottom right, #a1c4fd, #FFFFFF); */
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
@@ -212,13 +214,13 @@ h3 {
     text-align: center;
 }
 
-.exercise-btn {
+/* .exercise-btn {
     background-color: white;
     width: 150px;
     height: 150px;
     border-radius: 20px;
     margin: 10px;
-}
+} */
 
 .exercise-btn:hover {
     background-color: rgb(199, 199, 199);
@@ -251,8 +253,38 @@ h3 {
     -webkit-transition: .4s ease-in-out;
     -o-transition: .4s ease-in-out;
     transition: .4s ease-in-out;
+    position: relative;
+    top: 20%;
     left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
 
+.exercise-btn {
+    /* width: 150px;
+    height: 150px; */
+    font-size: 13px;
+    display: inline-block;
+    margin: 6px;
+    padding: 13px 35px;
+    border-radius: 100px;
+    letter-spacing: 2px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    line-height: 21px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #ff0026;
+    color: #ff0026;
+    -webkit-transition: .4s ease-in-out;
+    -o-transition: .4s ease-in-out;
+    transition: .4s ease-in-out;
+    position: relative;
+    top: 20%;
+    /* left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
 }
 
 .styledBtn:hover {
@@ -260,10 +292,15 @@ h3 {
     color: white;
 }
 
+.exercise-btn:hover {
+    background-color: #ff0026;
+    color: white;
+}
+
 .home-divider {
-    left: 200px;
-    /* -ms-transform: translate(-50%);
-    transform: translate(-50%); */
+    width: 50%;
+    float: left;
+    height: 100%;
 }
 
 

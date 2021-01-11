@@ -16,7 +16,18 @@
         <% } %>
         <div class="home-divider">
             <button id="startWorkout" class="styledBtn">Start Workout</button>
+        </div>
+        <div class="home-divider">
             <button id="goals-btn" class="styledBtn">Set Goals</button>
+            <div style="margin-top:100px">
+                <h3>Here are your current goals!</h3>
+                <div id="general-goalsdisplay">
+                    <h3>General Goals:</h4>
+                </div>
+                <div id="lift-goalsdisplay">
+                    <h3>Lift Goals:</h4>
+                </div>
+            </div>
         </div>
 
 
@@ -81,15 +92,7 @@
                 </form>
             </div>
         </div>
-        <div style="margin-top:100px">
-            <h3>Here are your current goals!</h3>
-            <div id="general-goalsdisplay">
-                <h3>General Goals:</h4>
-            </div>
-            <div id="lift-goalsdisplay">
-                <h3>Lift Goals:</h4>
-            </div>
-        </div>
+
     </div>
 
     <% userGoals = user.goals %>
