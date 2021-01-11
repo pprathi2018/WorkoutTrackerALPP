@@ -12,17 +12,19 @@
 
     <div class="main-div">
         <% if (user) { %>
-            <h2> Welcome Back <%= user.fullname %>!</h1>
+            <h2> Welcome Back <%= user.fullname %>!</h2>
         <% } %>
+        <div class="home-divider">
+            <button id="startWorkout" class="styledBtn">Start Workout</button>
+            <button id="goals-btn" class="styledBtn">Set Goals</button>
+        </div>
 
-        <button id="startWorkout">Start Workout</button>
-        <button id="goals-btn">Set Goals</button>
 
         <div id="workout-modal" class="modal">
             <div class="modal-content">
                 <span class="close" id="wspan">&times;</span>
                 <form action="/finishWorkout" method="POST">
-                    <h2>EXERCISE TRACKER</h2>
+                    <h3>EXERCISE TRACKER</h3>
 
                     <label class="modal-label">Workout Name:</label>
                     <input type="text" placeholder="Enter Workout Name" name="workoutName">
@@ -33,7 +35,7 @@
                     <!-- <label class="modal-label" id="total">Total Weight Lifted</label> -->
 
                     <div id="exercises">
-                        <h3>Exercises</h3>
+                        <h5>Exercises</h5>
                     </div>
                     <input type="text" placeholder="Add new exercise" id="addExercise">
                     <button type="button" id="addExerciseBtn" class="add-button">+</button>
@@ -48,7 +50,7 @@
             <div class="modal-content">
                 <span class="close" id="gspan">&times;</span>
                 <form action="/updateGoals" method="POST">
-                    <h2>UPDATE GOALS</h2>
+                    <h3>UPDATE GOALS</h3>
                     <div id="goals-gen">
                         <h3>General</h3>
                         <div id="genGoal-weight">
@@ -62,7 +64,7 @@
                     <button type="button" id="addGenGoalBtn" class="add-button">+</button>
 
                     <div id="goals-lift">
-                        <h3>Lifts</h3>
+                        <h5>Lifts</h5>
                         <div id="liftGoal-BP">
                             <label>Bench Press</label>
                             <input type="text" placeholder="Current PR" name="currentBench Press">
@@ -80,7 +82,7 @@
             </div>
         </div>
         <div style="margin-top:100px">
-            <h2>Here are your current goals!</h2>
+            <h3>Here are your current goals!</h3>
             <div id="general-goalsdisplay">
                 <h3>General Goals:</h4>
             </div>
