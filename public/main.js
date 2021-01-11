@@ -70,7 +70,7 @@ gspan.onclick = function() {
   gmodal.style.display = "none";
 }
 
-wspan.onClick = function() {
+wspan.onclick = () => {
   wmodal.style.display = "none";
 }
 
