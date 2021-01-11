@@ -9,6 +9,15 @@
 <body>
     <%- include ('navbar.ejs') -%>
     <div class="main-div">
+
+
+        <!-- <form action="/user/login" method="POST">
+            <input type="text" placeholder="Username" name="username">
+            <input type="text" placeholder="Password" name="password">
+            <button id="submit">Login</button>
+        </form>
+        <p >Have you created an account? <a href="/user/signup">Sign Up</a></p> -->
+
         <% if(success_msg != '') { %>
             <p><%=success_msg %> </p>
         <% } %>
@@ -19,14 +28,28 @@
         <% if(error != '') { %>
             <%= error %>
         <% } %>
-
-        <form action="/user/login" method="POST">
-            <input type="text" placeholder="Username" name="username">
-            <input type="text" placeholder="Password" name="password">
-            <button id="submit">Login</button>
-        </form>
-        <p >Have you created an account? <a href="/user/signup">Sign Up</a></p>
-
+        <div class="container">
+            <h4>Welcome</h4>
+            
+            <form class="login-form" action="/user/login" method="POST">
+                <input class="login-form-input" type="text" placeholder="Username" name="username">
+                <input class="login-form-input" type="password" placeholder="Password" name="password">
+                <button class="login-btn" type="submit" id="login-button">Login</button>
+            </form>
+        
+        <!-- <ul class="bg-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul> -->
+    </div>
     </div>
 
     <script>

@@ -1,7 +1,7 @@
 // const { Router } = require("express");
 
 // const update = document.querySelector('#increase-weight');
-document.getElementById("home").style.backgroundColor = "#92C4EE";
+document.getElementById("home").style.backgroundColor = "#D3D3D3";
 
 // update.addEventListener('click', _ => {
 //     fetch('/exercises', {

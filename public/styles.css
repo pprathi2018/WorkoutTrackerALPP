@@ -2,45 +2,51 @@ body {
     /* background-color: #F6E3D4; */
     background-color: #F9D199;
     margin: 0;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: proxima-nova,arial,helvetica;
     overflow-y: auto;
+    color: white;
+}
+
+.nav-menu {
+    display: flex;
+    padding: 0, 15px;
+    width: 100%;
+    background-color: #fff;
+    color: #0c0c0c;
+    top: 0;
+    height: 70px;
+    z-index: 100;
 }
 
 .main-header {
-    font-size: 50px;
+    font-size: 40px;
+    font-weight: 100;
+    margin: 0;
     text-align: center;
-    background-color: #64ABE3;
-    color: white;
-    margin: 0;
-    padding: .4em;
-    position: fixed;
-    width: 100%;
-    height: 60px;
-}
-
-nav {
-    background-color: #BBDBF7;
-    z-index: 9999;
-    top: 100px;
-    width: 100%;
-    height: 50px;
-    overflow: hidden;
-    margin: 0;
+    top: 12px;
+    left: 50%;
+    -ms-transform: translate(-50%);
+    transform: translate(-50%);
     position: fixed;
 }
   
-nav ul {
-    list-style: none;
-    margin-block-start: 0;
-    padding-inline-start: 0;
+.nav-left {
+    float: left;
+    width: 50%;
+}
+
+.nav-right {
+    float: right;
+    width: 50%;
 }
   
 nav ul li {
+    list-style: none;
     margin: 0;
     color: white;
-    width: 25%;
-    height: 50px;
-    line-height: 50px;
+    width: 50%;
+    height: 70px;
+    line-height: 70px;
     align-items: stretch;
     text-align: center;
     float: left;
@@ -49,7 +55,7 @@ nav ul li {
   
 /* Style the links inside the navigation bar */
 nav a {
-    color: white;
+    color: #0c0c0c;
     text-align: center;
     text-decoration: none;
     font-size: 20px;
@@ -57,25 +63,37 @@ nav a {
   
 /* Change the color of links on hover */
 nav ul li:hover {
-    background-color: #92C4EE;
+    background-color: #D3D3D3;
     color: black;
 }
 
 .main-div {
-    top: 150px;
+    top: 70px;
     position: fixed;
     width: 100%;
     height: 100%;
     overflow-y: auto;
-    padding: 20px;
+    background: linear-gradient(to bottom right, #283048, #859398);
+
+    /* background: linear-gradient(to bottom right, #696969, #000000); */
+    /* background: linear-gradient(to bottom right, #004e92, #000428); */
+    /*
+    Titanium: #283048, #859398
+#c2e59c, #64b3f4
+#83a4d4, #b6fbff
+    #1e3c72, #2a5298
+     DONT DELETE #70e1f5, ffd194
+    */
+
 } 
 
 .workout-div {
     float: left;
     width: 50%;
+    text-align: center;
+
     /* display: block;
     height: 100%;
-    text-align: center;
     background-color: #ffffff;
     overflow: hidden; */
 }
@@ -160,17 +178,272 @@ nav ul li:hover {
 }
   
 .collapsible-content {
+    color: black;
     padding: 0 18px;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
     background-color: #f1f1f1;
     text-align: left;
-    width: 94%;
+    width: 95%;
     border-radius: 30px;
-
+    margin-left: 5px;
 }
 
 .hiddenInput {
     display: none;
+}
+
+.exercises {
+    /* width: 50%; */
+    text-align: center;
+}
+
+.exercise-btn {
+    background-color: white;
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+.exercise-btn:hover {
+    background-color: rgb(199, 199, 199);
+}
+
+/* .split {
+    display: block;
+    width: 50%;
+    height: 100%;
+    background-color: navy;
+    float: left;
+}
+
+.styledBtn {
+    width: 50px;
+    height: 20px;
+} */
+
+
+
+/* login styles  */
+
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+
+/* @prim: #53e3a6; */
+
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	
+	font-weight: 300;
+}
+
+.login-body{
+	font-family: 'Source Sans Pro', sans-serif;
+	color: white;
+	font-weight: 300;
+}
+
+/* .wrapper{
+	background: #50a3a2;
+    background: linear-gradient(to bottom right, #a1c4fd, #c2e9fb);
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 100%;
+} */
+
+/* &.form-success{
+    .container{
+        h1{
+            transform: translateY(85px);
+        }
+    }
+} */
+
+.container {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 80px 0;
+	height: 400px;
+    text-align: center;
+}
+
+h4 {
+    font-size: 40px;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-put;
+    font-weight: 200;
+    color: white;
+    margin-top:100px;
+}
+
+.login-form {
+	padding: 20px 0;
+	position: relative;
+    z-index: 2;
+}
+    
+.login-form-input {
+    display: block;
+    appearance: none;
+    outline: 0;
+    border: 1px solid fade(white, 40%);
+    background-color: fade(white, 20%);
+    width: 250px;
+    
+    border-radius: 3px;
+    padding: 10px 15px;
+    margin: 0 auto 10px auto;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    
+    color: #0c0c0c;
+    
+    transition-duration: 0.25s;
+    font-weight: 300;
+}
+
+.login-form-input:hover {
+    background-color: fade(white, 40%);
+}
+
+.login-form-input:focus {
+    background-color: white;
+    width: 300px;
+    color: #0c0c0c;
+}
+	
+.login-btn{
+    appearance: none;
+    outline: 0;
+    background-color: white;
+    border: 0;
+    padding: 10px 15px;
+    color: #0c0c0c;
+    border-radius: 3px;
+    width: 250px;
+    cursor: pointer;
+    font-size: 18px;
+    transition-duration: 0.25s;
+}
+
+.login-btn:hover {
+    background-color: rgb(245, 247, 249);
+}
+
+.bg-bubbles{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+
+/* .bg-bubbles-li {
+	li{
+		position: absolute;
+		list-style: none;
+		display: block;
+		width: 40px;
+		height: 40px;
+		background-color: fade(white, 15%);
+		bottom: -160px;
+		
+		-webkit-animation: square 25s infinite;
+		animation:         square 25s infinite;
+		
+		-webkit-transition-timing-function: linear;
+		transition-timing-function: linear;
+		
+		&:nth-child(1){
+			left: 10%;
+		}
+		
+		&:nth-child(2){
+			left: 20%;
+			
+			width: 80px;
+			height: 80px;
+			
+			animation-delay: 2s;
+			animation-duration: 17s;
+		}
+		
+		&:nth-child(3){
+			left: 25%;
+			animation-delay: 4s;
+		}
+		
+		&:nth-child(4){
+			left: 40%;
+			width: 60px;
+			height: 60px;
+			
+			animation-duration: 22s;
+			
+			background-color: fade(white, 25%);
+		}
+		
+		&:nth-child(5){
+			left: 70%;
+		}
+		
+		&:nth-child(6){
+			left: 80%;
+			width: 120px;
+			height: 120px;
+			
+			animation-delay: 3s;
+			background-color: fade(white, 20%);
+		}
+		
+		&:nth-child(7){
+			left: 32%;
+			width: 160px;
+			height: 160px;
+			
+			animation-delay: 7s;
+		}
+		
+		&:nth-child(8){
+			left: 55%;
+			width: 20px;
+			height: 20px;
+			
+			animation-delay: 15s;
+			animation-duration: 40s;
+		}
+		
+		&:nth-child(9){
+			left: 25%;
+			width: 10px;
+			height: 10px;
+			
+			animation-delay: 2s;
+			animation-duration: 40s;
+			background-color: fade(white, 30%);
+		}
+		
+		&:nth-child(10){
+			left: 90%;
+			width: 160px;
+			height: 160px;
+			
+			animation-delay: 11s;
+		}
+	}
+} */
+
+@-webkit-keyframes square {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-700px) rotate(600deg); }
+}
+@keyframes square {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-700px) rotate(600deg); }
 }
