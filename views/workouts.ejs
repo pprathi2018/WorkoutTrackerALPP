@@ -14,7 +14,7 @@
         <div class="workout-div" id="workoutHistoryDiv">
             <h2>Past Workouts</h2>
 
-            <% for(var i = 0; i < workouts.length; i++) {%> 
+            <% for(var i = workouts.length - 1; i > -1; i--) {%> 
                     <button class="collapsible">
                         <% w = workouts[i]; %>
                         <%= w.name%> -
@@ -39,15 +39,23 @@
             }%>
         </div>
 
-        <div id="exercises">
+        <div id="exercises" class="exercises">
             <h2>Exercises</h2>
+            <button class="exercise-btn">Chest</button>
+            <button class="exercise-btn">Triceps</button>
+            <button class="exercise-btn">Back</button>
+            <button class="exercise-btn">Biceps</button>
+            <button class="exercise-btn">Shoulders</button>
+            <button class="exercise-btn">Legs</button>
+            <button class="exercise-btn">Abs</button>
+            <button class="exercise-btn">Other</button>
         </div>
         <!-- <div class="workout-div">Routines</div>
         <div class="workout-div">Exercises</div> -->
     </div>
 
     <script>
-        document.getElementById("workouts").style.backgroundColor = "#92C4EE";
+        document.getElementById("workouts").style.backgroundColor = "#D3D3D3";
 
         var coll = document.getElementsByClassName("collapsible");
         var i;
