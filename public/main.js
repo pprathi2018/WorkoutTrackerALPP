@@ -75,6 +75,7 @@ wspan.onclick = () => {
 }
 
 // When the user clicks anywhere outside of the modal, close it
+/** 
 window.onclick = function(event) {
   if (event.target == gmodal) {
     gmodal.style.display = "none";
@@ -82,6 +83,7 @@ window.onclick = function(event) {
     wmodal.style.display = "none";
   }
 }
+*/
 
 // Adds a general goal
 genGoalsBtn.onclick = () => {
@@ -105,25 +107,36 @@ addGoal = (divToAdd, inputVal, isLiftGoal) => {
     var newGoal = document.createElement("div");
     newGoal.id = inputVal + "div";
 
-    var newLbl = document.createElement("label");
-    newLbl.className = "modal-label";
-    newLbl.innerHTML = inputVal;
+    var btn = document.createElement("BUTTON");
+    btn.type = "button";
+    btn.className = "goal-collapsible";
+    btn.name = inputVal;
+    btn.innerHTML = inputVal;
+
+    var collapsibleContent = document.createElement("div");
+    collapsibleContent.className = "goal-collapsiblecontent";
     
     var input1 = document.createElement("input");
     input1.type = "text";
     var input2 = document.createElement("input");
     input2.type = "text";
+    var input3 = document.createElement("input");
+    input3.type = "text";
 
     if (isLiftGoal) {
-        input1.placeholder = "Current PR";
-        input2.placeholder = "Desired PR";
+        input1.placeholder = "Start PR";
+        input2.placeholder = "Current PR";
+        input3.placeholder = "Desired PR";
     } else {
-        input1.placeholder = "Current " + inputVal;
-        input2.placeholder = "Desired " + inputVal;
+        input1.placeholder = "Start " + inputVal;
+        input2.placeholder = "Current " + inputVal;
+        input3.placeholder = "Desired " + inputVal;
     }
 
-    input1.name = "current" + inputVal;
-    input2.name = "desired" +  inputVal;
+    // all names start with 7 letters
+    input1.name = "startin" + inputVal;
+    input2.name = "current" + inputVal;
+    input3.name = "desired" + inputVal;
 
     var hiddenInput = document.createElement("input");
     hiddenInput.type = "hidden";
@@ -145,12 +158,24 @@ addGoal = (divToAdd, inputVal, isLiftGoal) => {
         toDelete.remove();
     }
 
-    newGoal.appendChild(newLbl);
-    newGoal.appendChild(input1);
-    newGoal.appendChild(input2);
-    newGoal.appendChild(hiddenInput);
-    newGoal.appendChild(deleteBtn);
+    collapsibleContent.appendChild(input1);
+    collapsibleContent.appendChild(input2);
+    collapsibleContent.appendChild(input3);
+    collapsibleContent.appendChild(hiddenInput);
+
+    newGoal.appendChild(btn);
+    newGoal.appendChild(collapsibleContent);
     divToAdd.appendChild(newGoal);
+
+    btn.addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.maxHeight){
+          content.style.maxHeight = null;
+      } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+      }
+  });
 }
 
 addExerciseBtn.onclick = () => {

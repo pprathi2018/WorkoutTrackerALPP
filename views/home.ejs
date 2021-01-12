@@ -20,13 +20,6 @@
         <div class="home-divider">
             <button id="goals-btn" class="styledBtn">Set Goals</button>
             <div style="margin-top:100px">
-                <h3>Here are your current goals!</h3>
-                <div id="general-goalsdisplay">
-                    <h3>General Goals:</h4>
-                </div>
-                <div id="lift-goalsdisplay">
-                    <h3>Lift Goals:</h4>
-                </div>
             </div>
         </div>
 
@@ -61,57 +54,103 @@
                     <h3>UPDATE GOALS</h3>
                     <div id="goals-gen">
                         <h3>General</h3>
-                        <div id="genGoal-weight">
-                            <label class="modal-label" name="Weight">Weight</label>
-                            <input type="text" placeholder="Current Weight" name="currentWeight">
-                            <input type="text" placeholder="Desired Weight" name="desiredWeight">
-                            <input type="hidden" name="hidden-Weight" value="General">
-                        </div>
+
+                        <% if (genGoals.length == 0) { %>
+                        
+                        
+                            <div id="genGoal-weight">
+                                
+                                <button type="button" class="goal-collapsible" name="Weight">Weight</button>
+                                <div class="goal-collapsiblecontent">
+                                    <input type="text" placeholder="Start Weight" name="startinWeight">
+                                    <input type="text" placeholder="Current Weight" name="currentWeight">
+                                    <input type="text" placeholder="Desired Weight" name="desiredWeight">
+                                    <input type="hidden" name="hidden-Weight" value="General">
+                                </div>
+
+                            </div>
+                        <% } else { %>
+                            <% genGoals.forEach(function(goal) { %>
+                                    <div id="<%-goal.name%>div">
+                                    
+                                        <button type="button" class="goal-collapsible" name="<%-goal.name%>"><%-goal.name%></button>
+                                        <div class="goal-collapsiblecontent">
+                                            <input type="text" value="<%-goal.start%>" name="startin<%-goal.name%>">
+                                            <input type="text" value="<%-goal.current%>" name="current<%-goal.name%>">
+                                            <input type="text" value="<%-goal.goal%>" name="desired<%-goal.name%>">
+                                            <input type="hidden" name="hidden-<%-goal.name%>" value="General">
+                                        </div>
+        
+                                    </div>
+                            <% }) %>
+                        <% } %>
                     </div>
-                    <input type="text" placeholder="Enter general goal" id="addGGInput">
+                    <div style="margin-top:5px"></div>
+                    <input type="text" placeholder="Add new general goal" id="addGGInput">
                     <button type="button" id="addGenGoalBtn" class="add-button">+</button>
 
-                    <div id="goals-lift">
-                        <h5>Lifts</h5>
-                        <div id="liftGoal-BP">
-                            <label>Bench Press</label>
-                            <input type="text" placeholder="Current PR" name="currentBench Press">
-                            <input type="text" placeholder="Desired PR" name="desiredBench Press">
-                            <input type="hidden" name="hidden-BP" value="Lift">
-                        </div>
+                    <div style="margin-top:20px"></div>
 
+                    <div id="goals-lift">
+                        <h3>Lifts</h3>
+                        <% if (liftGoals.length == 0) { %>
+                        
+                            <div id="liftGoal-BP">
+                                
+                                <button type="button" class="goal-collapsible" name="Bench Press">Bench Press</button>
+                                <div class="goal-collapsiblecontent">
+                                    <input type="text" placeholder="Start Bench Press" name="startinBench Press">
+                                    <input type="text" placeholder="Current Bench Press" name="currentBench Press">
+                                    <input type="text" placeholder="Desired Bench Press" name="desiredBench Press">
+                                    <input type="hidden" name="hidden-Bench Press" value="Lift">
+                                </div>
+
+                            </div>
+                        <% } else {%>
+                            <% liftGoals.forEach(function(goal) { %>
+                                    <div id="<%-goal.name%>div">
+                                    
+                                        <button type="button" class="goal-collapsible" name="<%-goal.name%>"><%-goal.name%></button>
+                                        <div class="goal-collapsiblecontent">
+                                            <input type="text" value="<%-goal.start%>" name="startin<%-goal.name%>">
+                                            <input type="text" value="<%-goal.current%>" name="current<%-goal.name%>">
+                                            <input type="text" value="<%-goal.goal%>" name="desired<%-goal.name%>">
+                                            <input type="hidden" name="hidden-<%-goal.name%>" value="Lift">
+                                        </div>
+        
+                                    </div>
+                            <% }) %>
+                        <% } %>
                     </div>
-                    <input type="text" placeholder="Enter lift goal" id="addLiftGoalInput">
+                    <div style="margin-top:5px"></div>
+                    <input type="text" placeholder="Add new lift goal" id="addLiftGoalInput">
                     <button type="button" id="addLiftGoalBtn" class="add-button">+</button>
-                    <br>
-                    <button id="clear" type="button" >Clear</button>
-                    <button id="apply" type="submit" class="applyBtn">Apply</button>
+                    <div style="margin-top:20px"></div>
+                    <p style="color:black">Finished updating your goals?</p>
+                    <button id="apply" type="submit" class="applyBtn">Save</button>
                 </form>
             </div>
         </div>
 
     </div>
 
-    <% userGoals = user.goals %>
-
-    <script src="main.js">
-    </script>
+    <script src="main.js"> </script>
     <script>
 
-        var genDisplayDiv = document.getElementById("general-goalsdisplay");
-        var liftDisplayDiv = document.getElementById("lift-goalsdisplay");
+        var coll = document.getElementsByClassName("goal-collapsible");
+        var i;
 
-        "<%userGoals.forEach(function(goal) {%>"
-            var pGoal = document.createElement("p")
-            pGoal.innerHTML = "<%-goal.name%>" + " - Start: " + "<%-goal.start%>" + " Goal: " + "<%-goal.goal%>" 
-            pGoal.style.marginLeft = "25px";
-            if ("<%-goal.type%>" == "General") {
-                genDisplayDiv.appendChild(pGoal);
-            } else {
-                liftDisplayDiv.appendChild(pGoal);
-            }
-        "<%});%>"
-            
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight){
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
     </script>
         
 </body>
