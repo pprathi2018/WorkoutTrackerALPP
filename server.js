@@ -70,18 +70,23 @@ app.get("/home", (req, res) => {
 })
     
 app.get('/workouts', ensureAuthentication, async (req, res) => {
-    var workouts = user.workouts;
-    // var exercises = workouts.exercises;
+    var workouts = req.user.workouts;
+    var exercises = req.user.exercises;
     // console.log(workouts);
     // console.log(exercises);
     res.render('workouts.ejs', 
     {
         workouts,
+        exercises,
         loginStatus: "Logout"});
 })
 
 app.get('/analytics', ensureAuthentication, (req, res) => {
-    res.render('analytics.ejs', {loginStatus: "Logout"});
+    var workouts = user.workouts;
+    res.render('analytics.ejs', 
+    {
+        workouts, 
+        loginStatus: "Logout"});
 })
 
 app.get('/user', (req, res) => {

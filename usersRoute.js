@@ -6,6 +6,45 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 
 const { userSchema } = require('./models/User.js');
+const { exerciseSchema } = require('./models/User.js');
+
+
+const stdExercises = [
+
+    new exerciseSchema({
+        name: "Bench Press",
+        type: "chest"
+    }),
+    
+    new exerciseSchema({
+        name: "Skullcrusher",
+        type: "triceps"
+    }),
+    
+    new exerciseSchema({
+        name: "Back Row",
+        type: "back"
+    }),
+    
+    new exerciseSchema({
+        name: "Bicep Curl",
+        type: "biceps"
+    }),
+    
+    new exerciseSchema({
+        name: "Shoulder Press",
+        type: "shoulders"
+    }),
+    
+    new exerciseSchema({
+        name: "Squat",
+        type: "legs"
+    }),
+    
+    new exerciseSchema({
+        name: "Situps",
+        type: "abs"
+    })]
 
 module.exports = function(app) {
     app.use('/user', express.static('public'));
@@ -62,7 +101,8 @@ module.exports = function(app) {
                         username: username,
                         password: password,
                         fullname: fullname,
-                        email: email
+                        email: email,
+                        exercises: stdExercises
                     })
                     bcrypt.genSalt(12, (err, salt) => {
                         bcrypt.hash(newUser.password, salt, (err, hash) => {

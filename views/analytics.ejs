@@ -12,10 +12,19 @@
 
     <div class="main-div">
         Coming Soon!
+        <div id="general">
+            <div id="weightLifted"></div>
+        </div>
     </div>
 
     <script>
             document.getElementById("analytics").style.backgroundColor = "#D3D3D3";
+
+            const total = 0;
+            for (var i = 0; i < workouts.length; i++) {
+                total += workouts[i].weightLifted;
+            }
+            document.getElementById("weightLifted").innerHTML = "Total Weight Lifted: " + total;
     </script>
 </body>
 </html>

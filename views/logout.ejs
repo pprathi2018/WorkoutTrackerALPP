@@ -11,11 +11,11 @@
     <%- include ('navbar.ejs') -%>
 
     <div class='main-div'>
-        <h2>Goodbye!</h2>
-        <p> Log out of account </p>
-    
-        <a href="/user/logout">Logout</a>
-        
+        <h2>Goodbye!</h2>    
+        <form class="logout-form" action="/user/logout" method="GET">
+            <button class="styledBtn" type="submit" id="login-button">Logout</button>
+        </form>
+            
     </div>
 
     <script>

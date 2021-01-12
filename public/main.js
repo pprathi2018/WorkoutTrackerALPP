@@ -167,22 +167,25 @@ addExerciseBtn.onclick = () => {
   input1.type = "text";
   input1.placeholder = "Sets";
   input1.name = "sets" + inputVal;
-
+  input1.className = "modal-input";
 
   var input2 = document.createElement("input");
   input2.type = "text";
   input2.placeholder = "Reps";
   input2.name = "reps" + inputVal;
+  input2.className = "modal-input";
 
   var input3 = document.createElement("input");
   input3.type = "text";
   input3.placeholder = "Weight";
   input3.name = "weight" + inputVal;
+  input3.className = "modal-input";
 
   var deleteBtn = document.createElement("button");
   deleteBtn.innerHTML = "&times;";
   deleteBtn.type = "button";
   deleteBtn.id =  inputVal + "btn";
+  deleteBtn.className = "action-btn";
   deleteBtn.onclick = () => {
       var toDelete = document.getElementById(newEx.id);
       toDelete.remove();

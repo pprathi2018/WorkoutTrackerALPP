@@ -30,7 +30,6 @@
             </div>
         </div>
 
-
         <div id="workout-modal" class="modal">
             <div class="modal-content">
                 <span class="close" id="wspan">&times;</span>
@@ -38,21 +37,19 @@
                     <h3>EXERCISE TRACKER</h3>
 
                     <label class="modal-label">Workout Name:</label>
-                    <input type="text" placeholder="Enter Workout Name" name="workoutName">
-                    <!-- <label class="modal-label" id="timer">Time: 0s</label> -->
-                    <div id="stopwatch"></div>
+                    <input type="text" name="workoutName">
+                    <div id="stopwatch" class="stopwatch"></div>
                     <input type="text" id="duration" class="hiddenInput" name="duration">
-                    <!-- <button type="button" id="startTimer" class="stopwatch">Start / Stop Timer</button> -->
-                    <!-- <label class="modal-label" id="total">Total Weight Lifted</label> -->
 
                     <div id="exercises">
                         <h5>Exercises</h5>
                     </div>
-                    <input type="text" placeholder="Add new exercise" id="addExercise">
-                    <button type="button" id="addExerciseBtn" class="add-button">+</button>
+                    <input type="text" placeholder="Add new exercise" id="addExercise" class="modal-input">
+                    <button type="button" id="addExerciseBtn" class="action-btn">+</button>
 
 
-                    <button id="finish" type="submit" class="applyBtn">Finish</button>
+                    <button id="finish" type="submit" class="action-btn">FINISH</button>
+                    <button id="reset" type="button" class="action-btn">RESET</button>
                 </form>
             </div>
         </div>

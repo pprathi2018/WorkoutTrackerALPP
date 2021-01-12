@@ -62,10 +62,8 @@ const userSchema = new Schema({
     goals: [goalSchema],
     workouts: [workoutSchema],
     // routines: [routineSchema],
-    customExercises: {
-        type: Map,
-        of: Number
-    }
+    exercises: [exerciseSchema]
+    
 });
 
 module.exports = {
