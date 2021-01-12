@@ -11,11 +11,76 @@
     <%- include ('navbar.ejs') -%>
 
     <div class="main-div">
-        Coming Soon!
+        More data coming soon!
+
+        <h2> Current Goals </h2>
+
+        <div id="progress-gengoals">
+            <h3 class="goal-progress">General Goals Progress:</h3>
+            <% for (const [goal, progress] of genGoalMap) { %>
+                        <button class="progress-collapsible">
+                            <div class="inner-meter" id="progress<%-goal%>">
+                            </div>
+                            <%- goal.name %>
+                            <%- progress%>
+                        </button>
+                        <div class="progress-collapsiblecontent">
+                            <p style="margin-left: 20px;">Start: <%- goal.start %></p>
+                            <p>Current: <%- goal.current %></p>
+                            <p style="margin-right: 20px;">Finish: <%- goal.goal %></p>
+                        </div>
+
+            <% }; %>
+        </div>
+
+        <div id="progress-liftgoals">
+            <h3 class="goal-progress">Lift Goals Progress:</h3>
+            <% for (const [goal, progress] of liftGoalMap) { %>
+                <button class="progress-collapsible">
+                    <div class="inner-meter" id="progress<%-goal%>">
+                    </div>
+                    <%- goal.name %>
+                    <%- progress%>
+                </button>
+                <div class="progress-collapsiblecontent">
+                    <p style="margin-left: 20px;">Start: <%- goal.start %></p>
+                    <p>Current: <%- goal.current %></p>
+                    <p style="margin-right: 20px;">Finish: <%- goal.goal %></p>
+                </div>
+
+            <% }; %>
+
+
+            <div style="border:1px solid; width: 70%;">
+                <div style="background-color:red; height: 24px; width:20%"></div>
+            </div>
+        </div>
     </div>
 
     <script>
             document.getElementById("analytics").style.backgroundColor = "#D3D3D3";
+    </script>
+    <script>
+        var coll = document.getElementsByClassName("progress-collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight){
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+    <script type='text/javascript'>
+        console.log('<%-genGoalMap%>')
+        for (const [goal, progress] of '<%-genGoalMap%>') {
+            console.log(goal);
+        }
     </script>
 </body>
 </html>

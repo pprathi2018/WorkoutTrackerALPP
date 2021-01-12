@@ -10,28 +10,29 @@
     <%- include ('navbar.ejs') -%>
 
     <div class="main-div">
+        <div class="container">
 
-        <p>Password Requirements:</p>
-        <ul>At least 6 characters</ul>
+            <p>Password Requirements:</p>
+            <ul>At least 6 characters</ul>
 
-        <br>
-        <br>
+            <br>
+            <br>
 
-        <% if(typeof errors!= 'undefined') { %>
-        <%    errors.forEach(function(error){ %>
-        <p> <%= error.msg %></p>
-        <%    })        %>
-        <% } %>
+            <% if(typeof errors!= 'undefined') { %>
+            <%    errors.forEach(function(error){ %>
+            <p> <%= error.msg %></p>
+            <%    })        %>
+            <% } %>
 
-        <form action="/user/signup" method="POST">
-            <input type="text" placeholder="Username" name="username">
-            <input type="text" placeholder="Password" name="password">
-            <input type="text" placeholder="Full Name" name="fullname">
-            <input type="text" placeholder="Email" name="email">
-            <button type="submit">Sign Up</button>
-        </form>
-        <p >Have An Account? <a href="/user/login">Login</a></p>
-
+            <form class="login-form" action="/user/signup" method="POST">
+                <input class="login-form-input" type="text" placeholder="Username" name="username">
+                <input class="login-form-input" type="password" placeholder="Password" name="password">
+                <input class="login-form-input" type="text" placeholder="Full Name" name="fullname">
+                <input class="login-form-input" type="text" placeholder="Email" name="email">
+                <button class="login-btn" type="submit">Sign Up</button>
+            </form>
+            <p >Have An Account? <a href="/user/login">Login</a></p>
+        </div>
     </div>
 
     <script>

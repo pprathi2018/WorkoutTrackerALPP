@@ -3,7 +3,7 @@ console.log("May Node be with you");
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const connectionString = "mongodb+srv://andrewlin573:Alin4523$$@cluster0.bv2vu.mongodb.net/andrewlin573?retryWrites=true&w=majority"
+const connectionString = "mongodb+srv://pprathi2018:Pr01302k1@cluster0.meoms.mongodb.net/WorkoutTrackerDB?retryWrites=true&w=majority"
 
 const mongoose = require('mongoose')
 const port = 3000;
@@ -60,10 +60,9 @@ app.get("/", (req, res) => {
 app.get("/home", (req, res) => {
     if (req.isAuthenticated()) {
         user = req.user;
-        goals = user.goals;
-        res.render('home', {user, goals, loginStatus: "Logout"});
-        console.log(user.goals);
-
+        genGoals = user.goals.filter(goal=>goal.type == "General");
+        liftGoals = user.goals.filter(goal=>goal.type == "Lift");
+        res.render('home', {user, genGoals, liftGoals, loginStatus: "Logout"});
     }
     else {
         res.redirect('/');
@@ -82,7 +81,25 @@ app.get('/workouts', ensureAuthentication, async (req, res) => {
 })
 
 app.get('/analytics', ensureAuthentication, (req, res) => {
-    res.render('analytics.ejs', {loginStatus: "Logout"});
+    genGoals = user.goals.filter(goal=>goal.type == "General");
+    liftGoals = user.goals.filter(goal=>goal.type == "Lift");
+
+    genGoalProgress = genGoals.map(goal=>getProgress(goal.start, goal.current, goal.goal));
+    liftGoalProgress = liftGoals.map(goal=>getProgress(goal.start, goal.current, goal.goal));
+
+    genGoalMap = new Map();
+    liftGoalMap = new Map();
+
+    genGoals.forEach((goal, i) => genGoalMap.set(goal, genGoalProgress[i]));
+    liftGoals.forEach((goal, i) => liftGoalMap.set(goal, liftGoalProgress[i]));
+
+    console.log(liftGoalMap);
+    for (const [goal, progress] of genGoalMap) {
+        console.log(goal);
+    }
+    console.log(10/50);
+        
+    res.render('analytics.ejs', {genGoalMap, liftGoalMap, loginStatus: "Logout"});
 })
 
 app.get('/user', (req, res) => {
@@ -101,27 +118,35 @@ require('./usersRoute')(app)
 app.post('/updateGoals', async (req, res) => {
     console.log(req.body);
     var i = 0;
+    var startGoal;
     var curGoal;
     var desGoal;
     for (let g in req.body) {
         if (i == 0) {
-            curGoal = req.body[g];
+            startGoal = req.body[g];
             i++;
         } else if (i == 1) {
+            curGoal = req.body[g];
+            i++;
+        } else if (i == 2) {
             desGoal = req.body[g];
             i++;
         } else {
-            if (curGoal === null || desGoal === null ||
-                curGoal == '' || desGoal == '') {
+            if (curGoal === null || desGoal === null || startGoal === null ||
+                curGoal == '' || desGoal == '' || startGoal == '') {
                 i = 0;
                 continue;
             }
             var newGoal = new goalSchema({
                 name: g.substring(7),
-                start: curGoal,
+                start: startGoal,
+                current: curGoal,
                 goal: desGoal,
                 type: req.body[g]
             });
+
+            console.log('createdGoal');
+            console.log(startGoal);
 
             var foundCopy = false;
 
@@ -133,6 +158,7 @@ app.post('/updateGoals', async (req, res) => {
                     curUserGoals[i] = newGoal;
                     const doc = await curUser.save()
                     foundCopy = true;
+                    console.log('updatedGoal')
                     break;
                 }
             }
@@ -143,17 +169,10 @@ app.post('/updateGoals', async (req, res) => {
                 continue;
             }
             
-            userSchema.findOneAndUpdate(
-                { username: user.username },
-                {
-                    "$push": {"goals": newGoal} 
-                },
-                {
-                    new: true,
-                    upsert: true
-                }
-            ).catch(error => console.error(error))
+            curUserGoals.push(newGoal);
+            const doc = await curUser.save();
             i = 0;
+            console.log("updated");
         }
     }
     res.redirect('/home');
@@ -216,6 +235,18 @@ app.post('/finishWorkout', (req, res) => {
     res.redirect('/home');
     // console.log(req.body);
 })
+
+getProgress = function(start, current, goal) {
+    if (goal < start) {
+        var totalDiff = start - goal;
+        var curDiff = start - current;
+        return ((curDiff/totalDiff) * 100).toFixed(4) + '%';
+    } else {
+        var totalDiff = goal - start;
+        var curDiff = current - start;
+        return ((curDiff/totalDiff) * 100).toFixed(4) + '%';
+    }
+}
 
 /**
 app.post('/exercises', (req, res) => {
