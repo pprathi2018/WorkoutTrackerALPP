@@ -589,6 +589,7 @@ h4 {
     font-size: 15px;
     border: 1px solid;
     outline: none;
+    margin-top: 15px;
   }
 
   .progress-collapsible:after {

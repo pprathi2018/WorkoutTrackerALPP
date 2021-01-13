@@ -19,10 +19,10 @@
             <h3 class="goal-progress">General Goals Progress:</h3>
             <% for (const [goal, progress] of genGoalMap) { %>
                         <button class="progress-collapsible">
-                            <div class="inner-meter" id="progress<%-goal%>">
+                            <div class="inner-meter" id="progress<%-goal.name%>" style='width: <%= progress%>'>
                             </div>
                             <%- goal.name %>
-                            <%- progress%>
+                            <%- progress.substring(0, progress.indexOf('.')) + '%' %>
                         </button>
                         <div class="progress-collapsiblecontent">
                             <p style="margin-left: 20px;">Start: <%- goal.start %></p>
@@ -37,10 +37,10 @@
             <h3 class="goal-progress">Lift Goals Progress:</h3>
             <% for (const [goal, progress] of liftGoalMap) { %>
                 <button class="progress-collapsible">
-                    <div class="inner-meter" id="progress<%-goal%>">
+                    <div class="inner-meter" id="progress<%-goal.name%>" style='width: <%= progress%>'>
                     </div>
                     <%- goal.name %>
-                    <%- progress%>
+                    <%- progress.substring(0, progress.indexOf('.')) + '%' %>
                 </button>
                 <div class="progress-collapsiblecontent">
                     <p style="margin-left: 20px;">Start: <%- goal.start %></p>
@@ -49,11 +49,6 @@
                 </div>
 
             <% }; %>
-
-
-            <div style="border:1px solid; width: 70%;">
-                <div style="background-color:red; height: 24px; width:20%"></div>
-            </div>
         </div>
     </div>
 
@@ -74,12 +69,6 @@
                     content.style.maxHeight = content.scrollHeight + "px";
                 }
             });
-        }
-    </script>
-    <script type='text/javascript'>
-        console.log('<%-genGoalMap%>')
-        for (const [goal, progress] of '<%-genGoalMap%>') {
-            console.log(goal);
         }
     </script>
 </body>
