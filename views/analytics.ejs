@@ -54,6 +54,12 @@
 
     <script>
             document.getElementById("analytics").style.backgroundColor = "#D3D3D3";
+
+            const total = 0;
+            for (var i = 0; i < workouts.length; i++) {
+                total += workouts[i].weightLifted;
+            }
+            document.getElementById("weightLifted").innerHTML = "Total Weight Lifted: " + total;
     </script>
     <script>
         var coll = document.getElementsByClassName("progress-collapsible");

@@ -15,8 +15,8 @@
             <h2>Past Workouts</h2>
 
             <% for(var i = workouts.length - 1; i > -1; i--) {%> 
+                <% w = workouts[i]; %>
                     <button class="collapsible">
-                        <% w = workouts[i]; %>
                         <%= w.name%> -
                         <%= w.date%>, 
                         <%= w.duration%>s,
@@ -41,6 +41,16 @@
 
         <div id="exercises" class="exercises">
             <h2>Exercises</h2>
+
+            <div id=prs>
+                <div id="chest">
+                    <% for(var i = 0; i < exercises.length; i++) {%>
+                            <p><%= exercises[i].name%></p>
+                    <%}%> 
+
+                </div>
+            </div>
+
             <button class="exercise-btn">Chest</button>
             <button class="exercise-btn">Triceps</button>
             <button class="exercise-btn">Back</button>
@@ -71,8 +81,6 @@
                 } 
             });
         }
-
-//                        , workouts[i].date, workouts[1].duration, workouts[1].weightLifted 
     </script>
 </body>
 </html>

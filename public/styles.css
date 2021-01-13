@@ -1,12 +1,65 @@
+:root {
+    --redColor: #ff0026;
+    --color2: rgb(224, 206, 104);
+}
+
+/* GENERAL STYLING  */
+
 body {
-    /* background-color: #F6E3D4; */
-    /* background-color: #F9D199; */
     margin: 0;
     font-family: proxima-nova,arial,helvetica;
     overflow-y: auto;
-    height: 100%;
     color: white;
+    letter-spacing: 2px;
+    font-weight: 100;
 }
+
+h2 {
+    font-size: 100px;
+    font-weight: 100;
+    text-align: center;
+}
+
+h3 {
+    font-size: 30px;
+    color: #0c0c0c;
+    padding: 0 0 10px 0;
+}
+
+h4 {
+    font-size: 40px;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-put;
+    font-weight: 200;
+    color: white;
+    margin-top:100px;
+}
+
+.main-div {
+    top: 70px;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background: linear-gradient(to bottom right, #283048, #859398);
+    padding: 20px;
+    /* background: linear-gradient(to bottom right, #696969, #000000); */
+    /* background: linear-gradient(to bottom right, #004e92, #000428); */
+    /*
+    Titanium: #283048, #859398
+#c2e59c, #64b3f4
+#83a4d4, #b6fbff
+    #1e3c72, #2a5298
+     DONT DELETE #70e1f5, ffd194
+    */
+
+} 
+
+.hiddenInput {
+    display: none;
+}
+
+/* NAV STYLES */
 
 .nav-menu {
     display: flex;
@@ -29,31 +82,54 @@ body {
     -ms-transform: translate(-50%);
     transform: translate(-50%);
     position: fixed;
+    width: 10%;
 }
   
 .nav-left {
     float: left;
-    width: 50%;
+    width: 42%;
 }
 
 .nav-right {
-    float: right;
-    width: 50%;
+    margin-left: auto; 
+    margin-right: 0;
+    width: 42%;
 }
   
 nav ul li {
     list-style: none;
     margin: 0;
-    color: white;
+    color: ff0026;
     width: 50%;
     height: 70px;
     line-height: 70px;
     align-items: stretch;
     text-align: center;
     float: left;
+    position: static;
 }
+
+li::after {
+    content: "";
+    width: 20px;
+    height: .5px;
+    background-color: var(--redColor);
+    position: absolute;
+    top: 70px;
+    margin: 0 auto;
+    transform: scale(0);
+    -webkit-transition: .4s ease-in-out;
+    -o-transition: .4s ease-in-out;
+    transition: .4s ease-in-out;
+    display: flex;
+    justify-content: center;
+    margin-left: 10%;
+}
+
+li:hover::after {
+    transform: scale(10);
+  }
   
-/* Style the links inside the navigation bar */
 nav a {
     color: #0c0c0c;
     text-align: center;
@@ -62,90 +138,37 @@ nav a {
     text-transform: uppercase;
 }
   
-/* Change the color of links on hover */
-nav ul li:hover {
+/* nav ul li:hover {
     background-color: #D3D3D3;
     color: black;
     -webkit-transition: .3s ease-in-out;
     -o-transition: .3s ease-in-out;
     transition: .3s ease-in-out;
-}
+} */
 
-h2 {
-    font-size: 100px;
-    font-weight: 100;
-    text-align: center;
-}
 
-h3 {
-    color: #0c0c0c;
-    font-weight: bold;
-}
-
-.goal-progress {
-    font-size: 40px;
-    font-weight: 100;
-    text-align: center;
-    color: white;
-    margin-top: 20px;
-}
-
-.main-div {
-    top: 70px;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    background: linear-gradient(to bottom right, #283048, #859398);
-    padding: 20px;
-    height: 100%;
-    /* background: linear-gradient(to bottom right, #696969, #000000); */
-    /* background: linear-gradient(to bottom right, #004e92, #000428); */
-    /*
-    Titanium: #283048, #859398
-#c2e59c, #64b3f4
-#83a4d4, #b6fbff
-    #1e3c72, #2a5298
-     DONT DELETE #70e1f5, ffd194
-    */
-
-} 
-
-.workout-div {
-    float: left;
-    width: 50%;
-    text-align: center;
-
-    /* display: block;
-    height: 100%;
-    background-color: #ffffff;
-    overflow: hidden; */
-}
-
-/* The Modal (background) */
+/* THE MODAL (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: none;
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
   
-/* Modal Content/Box */
 .modal-content {
-    /* background: linear-gradient(to bottom right, #a1c4fd, #FFFFFF); */
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 80%;
 }
   
-/* The Close Button */
 .close {
     color: #aaa;
     float: right;
@@ -162,14 +185,16 @@ h3 {
 
 .modal-label {
     color: black;
-    /* display: block;
-    padding: .5%; */
+    width: 200px;
 }
 
 .applyBtn {
     position: relative;
 }
   
+
+/* COLLAPSIBLE */
+
 .collapsible {
     background-color: #777;
     color: white;
@@ -209,36 +234,67 @@ h3 {
     transition: max-height 0.2s ease-out;
     background-color: #f1f1f1;
     text-align: left;
-    width: 95%;
+    width: 100%;
     border-radius: 30px;
     margin-left: 5px;
 }
 
-.hiddenInput {
-    display: none;
+.modal-input {
+    margin: 2px;
+    padding: 4px;
 }
 
-.goalList {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+.modal-input:focus {
+    outline-color: #ff0026;
 }
 
-.goalListItem {
-    border: 1px solid #ddd; /* Add a thin border to each list item */
-    margin-top: -1px; /* Prevent double borders */
-    background-color: #f6f6f6; /* Add a grey background color */
-    padding: 4px; /* Add some padding */
-    opacity: 0.6;
-    transition: 0.3s;
-    width: 50%
+.action-btn {
+    /* font-size: 13px;
+    display: inline-block; */
+    /* margin: 0 auto;
+    padding: 13px 35px; */
+    border-radius: 6px;
+    letter-spacing: 2px;
+    text-align: center;
+    /*
+    text-decoration: none;
+    text-transform: uppercase;
+    line-height: 21px; */
+    background-color: white;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #ff0026;
+    color: #ff0026;
+    -webkit-transition: .4s ease-in-out;
+    -o-transition: .4s ease-in-out;
+    transition: .4s ease-in-out;
+    /* position: relative;
+    top: 20%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
+
+    margin: 2px;
+    padding: 4px;
 }
 
-.goalListItem:hover {
-    opacity: 1;
+.action-btn:hover {
+    background-color: #ff0026;
+    color: white;
 }
+
+/* WORKOUT PAGE STYLES */
+
 .exercises {
-    /* width: 50%; */
+    width: 50%;
+    text-align: center;
+    margin-left: auto; 
+    margin-right: 0;
+}
+
+.workout-div {
+    float: left;
+    width: 50%;
     text-align: center;
 }
 
@@ -332,12 +388,9 @@ h3 {
 }
 
 
-
-/* login styles  */
+/* LOGIN STYLES  */
 
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
-
-/* @prim: #53e3a6; */
 
 *{
 	box-sizing: border-box;
@@ -378,19 +431,19 @@ h3 {
     text-align: center;
 }
 
-h4 {
-    font-size: 40px;
-    transition-duration: 1s;
-    transition-timing-function: ease-in-put;
-    font-weight: 200;
-    color: white;
-    margin-top:100px;
-}
-
 .login-form {
-	padding: 20px 0;
+	padding: 5px 0 10px;
 	position: relative;
     z-index: 2;
+}
+
+.logout-form {
+	padding: 20px 0;
+	position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 25%;
+    transform: translate(-50%, -50%);
 }
     
 .login-form-input {
@@ -425,6 +478,29 @@ h4 {
 }
 	
 .login-btn{
+    /* font-size: 13px;
+    display: inline-block;
+    margin: 0 auto;
+    padding: 13px 35px;
+    border-radius: 100px;
+    letter-spacing: 2px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    line-height: 21px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #ff0026;
+    color: #ff0026;
+    -webkit-transition: .4s ease-in-out;
+    -o-transition: .4s ease-in-out;
+    transition: .4s ease-in-out;
+    position: relative;
+    top: 20%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
+
     appearance: none;
     outline: 0;
     background-color: white;
@@ -436,7 +512,6 @@ h4 {
     cursor: pointer;
     font-size: 18px;
     transition-duration: 0.25s;
-    margin-left: 0%;
 }
 
 .login-btn:hover {
@@ -547,6 +622,7 @@ h4 {
 	}
 } */
 
+<<<<<<< HEAD
 .goal-collapsible {
     background-color: #777;
     color: white;
@@ -621,6 +697,8 @@ h4 {
       height: 20px;
   }
 
+=======
+>>>>>>> 85fe69ddb3d93b26e71da0b49d9bd3ba866934a3
 @-webkit-keyframes square {
   0%   { transform: translateY(0); }
   100% { transform: translateY(-700px) rotate(600deg); }
@@ -628,4 +706,17 @@ h4 {
 @keyframes square {
   0%   { transform: translateY(0); }
   100% { transform: translateY(-700px) rotate(600deg); }
+}
+
+.signup {
+    color: #ff0026;
+    font-size: larger;
+    font-weight: 100;
+
+}
+
+/* OTHER */
+
+.stopwatch {
+    color: black;
 }
