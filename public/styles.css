@@ -273,7 +273,6 @@ nav a {
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); */
-
     margin: 2px;
     padding: 4px;
 }
@@ -622,7 +621,6 @@ nav a {
 	}
 } */
 
-<<<<<<< HEAD
 .goal-collapsible {
     background-color: #777;
     color: white;
@@ -697,8 +695,6 @@ nav a {
       height: 20px;
   }
 
-=======
->>>>>>> 85fe69ddb3d93b26e71da0b49d9bd3ba866934a3
 @-webkit-keyframes square {
   0%   { transform: translateY(0); }
   100% { transform: translateY(-700px) rotate(600deg); }

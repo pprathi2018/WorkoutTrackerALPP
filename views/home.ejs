@@ -52,6 +52,7 @@
                 <span class="close" id="gspan">&times;</span>
                 <form action="/updateGoals" method="POST">
                     <h3>UPDATE GOALS</h3>
+                    <p style="color:black"> You can view and set your goals here. Set your starting, current, and final goal. View your progress in analytics!</p>
                     <div id="goals-gen">
                         <h3>General</h3>
 
@@ -59,35 +60,31 @@
                         
                         
                             <div id="genGoal-weight">
-                                
-                                <button type="button" class="goal-collapsible" name="Weight">Weight</button>
-                                <div class="goal-collapsiblecontent">
-                                    <input type="text" placeholder="Start Weight" name="startinWeight">
-                                    <input type="text" placeholder="Current Weight" name="currentWeight">
-                                    <input type="text" placeholder="Desired Weight" name="desiredWeight">
-                                    <input type="hidden" name="hidden-Weight" value="General">
-                                </div>
-
+                                    <button type="button" class="goal-collapsible" name="Weight">Weight</button>
+                                    <div class="goal-collapsiblecontent">
+                                        <input type="text" placeholder="Start Weight" name="startinWeight">
+                                        <input type="text" placeholder="Current Weight" name="currentWeight">
+                                        <input type="text" placeholder="Desired Weight" name="desiredWeight">
+                                        <input type="hidden" name="hidden-Weight" value="General">
+                                    </div>
                             </div>
                         <% } else { %>
                             <% genGoals.forEach(function(goal) { %>
                                     <div id="<%-goal.name%>div">
-                                    
-                                        <button type="button" class="goal-collapsible" name="<%-goal.name%>"><%-goal.name%></button>
-                                        <div class="goal-collapsiblecontent">
-                                            <input type="text" value="<%-goal.start%>" name="startin<%-goal.name%>">
-                                            <input type="text" value="<%-goal.current%>" name="current<%-goal.name%>">
-                                            <input type="text" value="<%-goal.goal%>" name="desired<%-goal.name%>">
-                                            <input type="hidden" name="hidden-<%-goal.name%>" value="General">
-                                        </div>
-        
+                                            <button type="button" class="goal-collapsible" name="<%-goal.name%>"><%-goal.name%></button>
+                                            <div class="goal-collapsiblecontent">
+                                                <input type="text" value="<%-goal.start%>" name="startin<%-goal.name%>">
+                                                <input type="text" value="<%-goal.current%>" name="current<%-goal.name%>">
+                                                <input type="text" value="<%-goal.goal%>" name="desired<%-goal.name%>">
+                                                <input type="hidden" name="hidden-<%-goal.name%>" value="General">
+                                            </div>
                                     </div>
                             <% }) %>
                         <% } %>
                     </div>
                     <div style="margin-top:5px"></div>
-                    <input type="text" placeholder="Add new general goal" id="addGGInput">
-                    <button type="button" id="addGenGoalBtn" class="add-button">+</button>
+                    <input type="text" placeholder="Add new general goal" id="addGGInput" class="modal-input">
+                    <button type="button" id="addGenGoalBtn" class="action-btn">+</button>
 
                     <div style="margin-top:20px"></div>
 
@@ -123,11 +120,11 @@
                         <% } %>
                     </div>
                     <div style="margin-top:5px"></div>
-                    <input type="text" placeholder="Add new lift goal" id="addLiftGoalInput">
-                    <button type="button" id="addLiftGoalBtn" class="add-button">+</button>
+                    <input type="text" placeholder="Add new lift goal" id="addLiftGoalInput" class="modal-input">
+                    <button type="button" id="addLiftGoalBtn" class="action-btn">+</button>
                     <div style="margin-top:20px"></div>
                     <p style="color:black">Finished updating your goals?</p>
-                    <button id="apply" type="submit" class="applyBtn">Save</button>
+                    <button id="apply" type="submit" class="action-btn">Save</button>
                 </form>
             </div>
         </div>
