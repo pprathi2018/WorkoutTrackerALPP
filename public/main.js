@@ -241,6 +241,11 @@ var Stopwatch = function(elem, durElem, options) {
   options = options || {};
   options.delay = options.delay || 1;
 
+  timer.className = "timer";
+  startButton.className = "timer-btn";
+  stopButton.className = "timer-btn";
+  resetButton.className = "timer-btn";
+
   // append elements     
   elem.appendChild(timer);
   elem.appendChild(startButton);
