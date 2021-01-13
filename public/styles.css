@@ -271,10 +271,7 @@ nav a {
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); */
-<<<<<<< HEAD
-=======
     cursor: pointer;
->>>>>>> 1de6172375b367bcddc52f37c452241d0cd4ae5f
     margin: 2px;
     padding: 4px;
     text-decoration: none;
@@ -623,6 +620,11 @@ nav a {
 		}
 	}
 } */
+
+.goal-progress {
+    color: white;
+    font-weight: bold;
+}
 
 .goal-collapsible {
     background-color: #777;
