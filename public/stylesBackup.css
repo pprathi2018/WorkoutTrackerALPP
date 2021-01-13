@@ -9,6 +9,7 @@ body {
     margin: 0;
     font-family: proxima-nova,arial,helvetica;
     overflow-y: auto;
+    height: 100%;
     color: white;
     letter-spacing: 2px;
     font-weight: 100;
@@ -144,8 +145,8 @@ nav a {
     -webkit-transition: .3s ease-in-out;
     -o-transition: .3s ease-in-out;
     transition: .3s ease-in-out;
+<<<<<<< HEAD
 } */
-
 
 /* THE MODAL (background) */
 .modal {
@@ -154,9 +155,9 @@ nav a {
     z-index: 1;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    /* overflow: auto; */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
@@ -191,6 +192,7 @@ nav a {
 .applyBtn {
     position: relative;
 }
+  
 
 /* COLLAPSIBLE */
 
@@ -244,11 +246,12 @@ nav a {
 }
 
 .modal-input:focus {
-    outline-color: black;
+    outline-color: #ff0026;
 }
 
 .action-btn {
     /* font-size: 13px;
+    display: inline-block; */
     /* margin: 0 auto;
     padding: 13px 35px; */
     border-radius: 6px;
@@ -261,8 +264,8 @@ nav a {
     background-color: white;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    border: 1px solid black;
-    color: black;
+    border: 1px solid #ff0026;
+    color: #ff0026;
     -webkit-transition: .4s ease-in-out;
     -o-transition: .4s ease-in-out;
     transition: .4s ease-in-out;
@@ -271,18 +274,37 @@ nav a {
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); */
-    cursor: pointer;
+
     margin: 2px;
     padding: 4px;
-    text-decoration: none;
 }
 
 .action-btn:hover {
-    background-color: black;
+    background-color: #ff0026;
     color: white;
 }
 
 /* WORKOUT PAGE STYLES */
+
+.goalList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.goalListItem {
+    border: 1px solid #ddd; /* Add a thin border to each list item */
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6; /* Add a grey background color */
+    padding: 4px; /* Add some padding */
+    opacity: 0.6;
+    transition: 0.3s;
+    width: 50%
+}
+
+.goalListItem:hover {
+    opacity: 1;
+}
 
 .exercises {
     width: 50%;
@@ -386,7 +408,6 @@ nav a {
     height: 100%;
 }
 
-
 /* LOGIN STYLES  */
 
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
@@ -453,7 +474,7 @@ nav a {
     background-color: fade(white, 20%);
     width: 250px;
     
-    border-radius: 5px;
+    border-radius: 3px;
     padding: 10px 15px;
     margin: 0 auto 10px auto;
     display: block;
@@ -477,16 +498,16 @@ nav a {
 }
 	
 .login-btn{
-    font-size: 13px;
-    /* display: inline-block; */
+    /* font-size: 13px;
+    display: inline-block;
     margin: 0 auto;
     padding: 13px 35px;
-    border-radius: 5px;
+    border-radius: 100px;
     letter-spacing: 2px;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    /* line-height: 21px; */
+    line-height: 21px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     border: 1px solid #ff0026;
@@ -494,28 +515,29 @@ nav a {
     -webkit-transition: .4s ease-in-out;
     -o-transition: .4s ease-in-out;
     transition: .4s ease-in-out;
-    /* position: relative; */
-    /* top: 20%;
+    position: relative;
+    top: 20%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); */
 
     appearance: none;
-    /* outline: 0; */
+    outline: 0;
     background-color: white;
-    /* border: 0; */
-    /* padding: 10px 15px; */
-    /* color: #0c0c0c; */
-    /* border-radius: 3px; */
+    border: 0;
+    padding: 10px 15px;
+    color: #0c0c0c;
+    border-radius: 3px;
     width: 250px;
     cursor: pointer;
-    /* font-size: 18px; */
-    /* transition-duration: 0.25s; */
+    font-size: 18px;
+    transition-duration: 0.25s;
+    margin-left: 0%;
 }
 
 .login-btn:hover {
-    background-color: var(--redColor);
-    color: white;}
+    background-color: rgb(245, 247, 249);
+}
 
 .bg-bubbles{
 	position: absolute;
@@ -621,79 +643,6 @@ nav a {
 	}
 } */
 
-@-webkit-keyframes square {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(-700px) rotate(600deg); }
-}
-@keyframes square {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(-700px) rotate(600deg); }
-}
-
-.signup {
-    color: white;
-    font-weight: 100;
-}
-
-.signup:hover {
-    color: var(--redColor);
-}
-
-/* OTHER */
-
-.stopwatch {
-    color: black;
-    padding: 15px 0px 0px;
-}
-
-.timer {
-    width: 80px;
-    position: absolute;
-    outline: 1px solid black;
-    margin: 0;
-    padding: 4px;
-    /* top: -2px; */
-}
-
-.timer-btn {
-    /* font-size: 13px;
-    /* margin: 0 auto;
-    padding: 13px 35px; */
-    border-radius: 6px;
-    letter-spacing: 2px;
-    text-align: center;
-    /*
-    text-decoration: none;
-    text-transform: uppercase;
-    line-height: 21px; */
-    background-color: white;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    border: 1px solid black;
-    color: black;
-    -webkit-transition: .4s ease-in-out;
-    -o-transition: .4s ease-in-out;
-    transition: .4s ease-in-out;
-    /* position: relative;
-    top: 20%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%); */
-    cursor: pointer;
-    margin: 2px;
-    padding: 4px;
-    text-decoration: none;
-    position: relative;
-    left: 100px;
-}
-
-.timer-btn:hover {
-    background-color: black;
-    color: white;
-}
-
-/* GOAL STYLES  */
-
 .goal-collapsible {
     background-color: #777;
     color: white;
@@ -736,7 +685,6 @@ nav a {
     font-size: 15px;
     border: 1px solid;
     outline: none;
-    margin-top: 15px;
   }
 
   .progress-collapsible:after {
@@ -767,3 +715,34 @@ nav a {
       background-color:red;
       height: 20px;
   }
+
+@-webkit-keyframes square {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-700px) rotate(600deg); }
+}
+@keyframes square {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-700px) rotate(600deg); }
+}
+
+.signup {
+    color: #ff0026;
+    font-size: larger;
+    font-weight: 100;
+
+}
+
+/* OTHER */
+
+.stopwatch {
+    color: black;
+}
+
+/* ANALYTICS */
+.goal-progress {
+    font-size: 40px;
+    font-weight: 100;
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+}
