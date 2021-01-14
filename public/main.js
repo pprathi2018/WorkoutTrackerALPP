@@ -356,19 +356,22 @@ for (var i = 0; i < deleteBtns.length; i++) {
             })
         })
         .then(res => {
-            if (res.ok) return res.json();
-        })
-        .then(response => {
-            window.location.reload();
-
-            // if (response === "No Barbell Exercise to delete") {
-            //     messageDiv.textContent = 'No Barbell Exercise to delete'
-            // } else {
-            //     window.location.reload();
-            // }
-        }).then(response => {
-            gmodal.style.display = "block";
+            // if (res.ok) return res.json();
+            reloadNow();
         })
         .catch(error => console.error(error))
     })
+}
+
+function reloadNow(){
+  sessionStorage.setItem('reloading',"true");
+  window.location.reload();
+}
+
+//when loading:        
+if (sessionStorage.getItem('reloading') === "true") {
+  sessionStorage.clear();
+  gmodal.style.display = "block";
+
+  // alert("I've been reloaded!");
 }
