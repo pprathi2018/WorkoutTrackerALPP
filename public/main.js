@@ -1,4 +1,3 @@
-// const { Router } = require("express");
 
 // const update = document.querySelector('#increase-weight');
 document.getElementById("home").style.backgroundColor = "#D3D3D3";
@@ -54,6 +53,7 @@ var wbtn = document.getElementById("startWorkout");
 var wspan = document.getElementsByClassName("close")[0];
 var addExerciseBtn = document.getElementById("addExerciseBtn");
 var workoutDiv = document.getElementById("exercises");
+var woExercisesDiv = document.getElementById("exContainer");
 var addExerciseInput = document.getElementById("addExercise");
 
 // When the user clicks on the button, open the modal
@@ -118,10 +118,13 @@ addGoal = (divToAdd, inputVal, isLiftGoal) => {
     
     var input1 = document.createElement("input");
     input1.type = "text";
+    input1.className = "modal-input";
     var input2 = document.createElement("input");
     input2.type = "text";
+    input2.className = "modal-input";
     var input3 = document.createElement("input");
     input3.type = "text";
+    input3.className = "modal-input";
 
     if (isLiftGoal) {
         input1.placeholder = "Start PR";
@@ -150,9 +153,10 @@ addGoal = (divToAdd, inputVal, isLiftGoal) => {
     }
 
     var deleteBtn = document.createElement("button");
-    deleteBtn.innerHTML = "&times;";
+    deleteBtn.innerHTML = "Remove Goal";
     deleteBtn.type = "button";
     deleteBtn.id =  inputVal + "btn";
+    deleteBtn.className = "deleteGoal-btn";
     deleteBtn.onclick = () => {
         var toDelete = document.getElementById(newGoal.id);
         toDelete.remove();
@@ -161,10 +165,13 @@ addGoal = (divToAdd, inputVal, isLiftGoal) => {
     collapsibleContent.appendChild(input1);
     collapsibleContent.appendChild(input2);
     collapsibleContent.appendChild(input3);
+    collapsibleContent.appendChild(deleteBtn);
     collapsibleContent.appendChild(hiddenInput);
 
     newGoal.appendChild(btn);
     newGoal.appendChild(collapsibleContent);
+    // newGoal.appendChild(deleteBtn);
+
     divToAdd.appendChild(newGoal);
 
     btn.addEventListener("click", function() {
@@ -188,6 +195,9 @@ addExerciseBtn.onclick = () => {
   newLbl.className = "modal-label";
   newLbl.innerHTML = inputVal;
 
+  // var div = document.createElement("div");
+  // div.className = "exercise-div";
+
   var input1 = document.createElement("input");
   input1.type = "text";
   input1.placeholder = "Sets";
@@ -210,7 +220,7 @@ addExerciseBtn.onclick = () => {
   deleteBtn.innerHTML = "&times;";
   deleteBtn.type = "button";
   deleteBtn.id =  inputVal + "btn";
-  deleteBtn.className = "action-btn";
+  deleteBtn.className = "deleteEx-btn";
   deleteBtn.onclick = () => {
       var toDelete = document.getElementById(newEx.id);
       toDelete.remove();
@@ -221,7 +231,9 @@ addExerciseBtn.onclick = () => {
   newEx.appendChild(input2);
   newEx.appendChild(input3);
   newEx.appendChild(deleteBtn);
-  workoutDiv.appendChild(newEx);
+  woExercisesDiv.appendChild(newEx);
+
+  addExerciseInput.value = "";
 }
 
 
@@ -246,11 +258,14 @@ var Stopwatch = function(elem, durElem, options) {
   stopButton.className = "timer-btn";
   resetButton.className = "timer-btn";
 
+  var div = document.createElement("div");
+  div.className = "timer-div";
   // append elements     
   elem.appendChild(timer);
-  elem.appendChild(startButton);
-  elem.appendChild(stopButton);
-  elem.appendChild(resetButton);
+  div.appendChild(startButton);
+  div.appendChild(stopButton);
+  div.appendChild(resetButton);
+  elem.appendChild(div);
 
   // initialize
   reset();
@@ -317,3 +332,43 @@ var Stopwatch = function(elem, durElem, options) {
 var s = document.getElementById("stopwatch");
 var d = document.getElementById("duration");
 const sw = new Stopwatch(s, d, {delay: 10});
+
+var workoutClearBtn = document.getElementById("clearWorkout")
+
+workoutClearBtn.onclick = () => {
+  while (woExercisesDiv.firstChild) {
+    woExercisesDiv.removeChild(woExercisesDiv.firstChild);
+  }
+  sw.reset();
+  sw.stop();
+  addExerciseInput.value = "";
+}
+
+var deleteBtns = document.getElementsByClassName("deleteGoal-btn");
+for (var i = 0; i < deleteBtns.length; i++) {
+    const s = deleteBtns[i].id;
+    deleteBtns[i].addEventListener('click', _ => {
+        fetch('/deleteGoal', {
+            method: 'delete',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                name: s.substring(0, s.length - 3)
+            })
+        })
+        .then(res => {
+            if (res.ok) return res.json();
+        })
+        .then(response => {
+            window.location.reload();
+
+            // if (response === "No Barbell Exercise to delete") {
+            //     messageDiv.textContent = 'No Barbell Exercise to delete'
+            // } else {
+            //     window.location.reload();
+            // }
+        }).then(response => {
+            gmodal.style.display = "block";
+        })
+        .catch(error => console.error(error))
+    })
+}

@@ -3,7 +3,7 @@ console.log("May Node be with you");
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const connectionString = "mongodb+srv://pprathi2018:Pr01302k1@cluster0.meoms.mongodb.net/WorkoutTrackerDB?retryWrites=true&w=majority"
+const connectionString = "mongodb+srv://andrewlin573:Alin4523$$@cluster0.bv2vu.mongodb.net/andrewlin573?retryWrites=true&w=majority"
 
 const mongoose = require('mongoose')
 const port = 3000;
@@ -94,11 +94,11 @@ app.get('/analytics', ensureAuthentication, (req, res) => {
     genGoals.forEach((goal, i) => genGoalMap.set(goal, genGoalProgress[i]));
     liftGoals.forEach((goal, i) => liftGoalMap.set(goal, liftGoalProgress[i]));
 
-    console.log(liftGoalMap);
-    for (const [goal, progress] of genGoalMap) {
-        console.log(goal);
-    }
-    console.log(10/50);
+    // console.log(liftGoalMap);
+    // for (const [goal, progress] of genGoalMap) {
+    //     console.log(goal);
+    // }
+    // console.log(10/50);
         
     res.render('analytics.ejs', {genGoalMap, liftGoalMap, loginStatus: "Logout"});
 })
@@ -298,6 +298,44 @@ app.post('/exercises', (req, res) => {
 //         res.json('Deleted a Barbell Exercise');
 //     }).catch(error => console.error(error))
 // })
+
+app.delete('/deleteGoal', async (req, res) => {
+    var curUser = await userSchema.findOne({username: user.username})
+    var goals = curUser.goals;
+    var toDelete = 0;
+    for (var i = 0; i < goals.length; i++) {
+        if (goals[i].name == req.body.name) {
+            toDelete = i;
+            break;
+        }
+    }
+    goals.splice(toDelete, 1);
+    const doc = await curUser.save()
+
+    // for (const [i, goal] of curUserGoals.entries()) {
+    //     if (goal.name == g.substring(7)) {
+    //         curUserGoals[i] = newGoal;
+    //         const doc = await curUser.save()
+    //         foundCopy = true;
+    //         console.log('updatedGoal')
+    //         break;
+    //     }
+    // }
+
+
+    // res.render('analytics.ejs', {genGoalMap, liftGoalMap, loginStatus: "Logout"});
+    // console.log(req.body.name);
+    // userSchema.findOneAndUpdate( 
+    //     {username: user.username},
+    //     { $pull: {goals: {$elemMatch:{ name: [req.body.name] }}}}
+    // ).then(result => {
+    //     console.log(result);
+    // })
+    // toDelete = user.goals.filter(goal=>goal.name == req.body.name);
+    // console.log(toDelete);
+    // user.goals.remove(toDelete);
+    return res.json("Success");
+})
 
 app.listen(port, function () {
     console.log('listening on 3000');

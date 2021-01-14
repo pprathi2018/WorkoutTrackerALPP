@@ -5,9 +5,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 
-const { userSchema } = require('./models/User.js');
-const { exerciseSchema } = require('./models/User.js');
-
+const { userSchema, goalSchema, exerciseSchema, workoutSchema } = require('./models/User.js');
 
 const stdExercises = [
 
@@ -44,7 +42,20 @@ const stdExercises = [
     new exerciseSchema({
         name: "Situps",
         type: "abs"
-    })]
+    })
+]
+
+const stdGoals = [
+    new goalSchema({
+        name: "Weight",
+        type: "General"
+    }),
+
+    new goalSchema({
+        name: "Bench Press",
+        type: "Lift"
+    })
+]
 
 module.exports = function(app) {
     app.use('/user', express.static('public'));
@@ -102,6 +113,8 @@ module.exports = function(app) {
                         password: password,
                         fullname: fullname,
                         email: email,
+                        goals: stdGoals,
+                        workouts: [],
                         exercises: stdExercises
                     })
                     bcrypt.genSalt(12, (err, salt) => {

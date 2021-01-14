@@ -28,21 +28,23 @@
                 <span class="close" id="wspan">&times;</span>
                 <form action="/finishWorkout" method="POST">
                     <h3>EXERCISE TRACKER</h3>
+                    <p style="color:black"> Record your exercises while you workout. Check out your previous workouts in the workouts tab. Good luck! &#128170;</p>
 
-                    <label class="modal-label">Workout Name:</label>
-                    <input type="text" name="workoutName">
+                    <label class="modal-label" style="font-weight: bold;">Workout Name:</label>
+                    <input type="text" name="workoutName" class="modal-input">
                     <div id="stopwatch" class="stopwatch">Time: </div>
                     <input type="text" id="duration" class="hiddenInput" name="duration">
 
                     <div id="exercises">
                         <h5>Exercises</h5>
                     </div>
+                    <div id="exContainer"></div>
                     <input type="text" placeholder="Add new exercise" id="addExercise" class="modal-input">
                     <button type="button" id="addExerciseBtn" class="action-btn">+</button>
 
 
                     <button id="finish" type="submit" class="action-btn">FINISH</button>
-                    <button id="reset" type="button" class="action-btn">RESET</button>
+                    <button id="clearWorkout" type="button" class="action-btn">CLEAR</button>
                 </form>
             </div>
         </div>
@@ -62,21 +64,23 @@
                             <div id="genGoal-weight">
                                     <button type="button" class="goal-collapsible" name="Weight">Weight</button>
                                     <div class="goal-collapsiblecontent">
-                                        <input type="text" placeholder="Start Weight" name="startinWeight">
-                                        <input type="text" placeholder="Current Weight" name="currentWeight">
-                                        <input type="text" placeholder="Desired Weight" name="desiredWeight">
+                                        <input type="text" placeholder="Start Weight" name="startinWeight" class="modal-input">
+                                        <input type="text" placeholder="Current Weight" name="currentWeight" class="modal-input">
+                                        <input type="text" placeholder="Desired Weight" name="desiredWeight" class="modal-input">
                                         <input type="hidden" name="hidden-Weight" value="General">
+                                        <!-- <button type="button" class="deleteGoal-btn" onclick="deleteGoal('genGoal-weight')">Remove Goal</button> -->
                                     </div>
                             </div>
                         <% } else { %>
                             <% genGoals.forEach(function(goal) { %>
-                                    <div id="<%-goal.name%>div">
+                                    <div id="<%-goal.name%>div" class="goal-div">
                                             <button type="button" class="goal-collapsible" name="<%-goal.name%>"><%-goal.name%></button>
                                             <div class="goal-collapsiblecontent">
-                                                <input type="text" value="<%-goal.start%>" name="startin<%-goal.name%>">
-                                                <input type="text" value="<%-goal.current%>" name="current<%-goal.name%>">
-                                                <input type="text" value="<%-goal.goal%>" name="desired<%-goal.name%>">
+                                                <input type="text" value="<%-goal.start%>" name="startin<%-goal.name%>" class="modal-input">
+                                                <input type="text" value="<%-goal.current%>" name="current<%-goal.name%>" class="modal-input">
+                                                <input type="text" value="<%-goal.goal%>" name="desired<%-goal.name%>" class="modal-input">
                                                 <input type="hidden" name="hidden-<%-goal.name%>" value="General">
+                                                <button type="button" class="deleteGoal-btn" id="<%-goal.name%>btn">Remove Goal</button>
                                             </div>
                                     </div>
                             <% }) %>
@@ -96,23 +100,25 @@
                                 
                                 <button type="button" class="goal-collapsible" name="Bench Press">Bench Press</button>
                                 <div class="goal-collapsiblecontent">
-                                    <input type="text" placeholder="Start Bench Press" name="startinBench Press">
-                                    <input type="text" placeholder="Current Bench Press" name="currentBench Press">
-                                    <input type="text" placeholder="Desired Bench Press" name="desiredBench Press">
+                                    <input type="text" placeholder="Start Bench Press" name="startinBench Press" class="modal-input">
+                                    <input type="text" placeholder="Current Bench Press" name="currentBench Press" class="modal-input">
+                                    <input type="text" placeholder="Desired Bench Press" name="desiredBench Press" class="modal-input">
                                     <input type="hidden" name="hidden-Bench Press" value="Lift">
+                                    <!-- <button type="button" class="deleteGoal-btn" onclick="deleteGoal('liftGoal-BP')">Remove Goal</button> -->
                                 </div>
 
                             </div>
                         <% } else {%>
                             <% liftGoals.forEach(function(goal) { %>
-                                    <div id="<%-goal.name%>div">
+                                    <div id="<%-goal.name%>div" class="goal-div">
                                     
                                         <button type="button" class="goal-collapsible" name="<%-goal.name%>"><%-goal.name%></button>
                                         <div class="goal-collapsiblecontent">
-                                            <input type="text" value="<%-goal.start%>" name="startin<%-goal.name%>">
-                                            <input type="text" value="<%-goal.current%>" name="current<%-goal.name%>">
-                                            <input type="text" value="<%-goal.goal%>" name="desired<%-goal.name%>">
+                                            <input type="text" value="<%-goal.start%>" name="startin<%-goal.name%>" class="modal-input">
+                                            <input type="text" value="<%-goal.current%>" name="current<%-goal.name%>" class="modal-input">
+                                            <input type="text" value="<%-goal.goal%>" name="desired<%-goal.name%>" class="modal-input">
                                             <input type="hidden" name="hidden-<%-goal.name%>" value="Lift">
+                                            <button type="button" class="deleteGoal-btn" id="<%-goal.name%>btn">Remove Goal</button>
                                         </div>
         
                                     </div>
@@ -146,8 +152,11 @@
                 } else {
                     content.style.maxHeight = content.scrollHeight + "px";
                 }
+
             });
         }
+
+        
     </script>
         
 </body>
