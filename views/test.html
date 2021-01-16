@@ -1,72 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>WorkoutTracker</title>
+    <title>Test</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href = "styles.css">
 </head>
 
 <body>
-    <%- include('navbar.ejs') -%>
-
-    <div class="main-div">
 
         <h4>Welcome to Wacker: A Workout Tracker application</h4>
         <div style="margin-top: 50px;"></div>
         <p>Here, you can keep a record of your workouts and exercises along with your goals to get in shape.</p>
         <p>Create an account or log in to utilize the resources!</p>
 
-        <div style="margin-top: 100px;"></div>
-
         <div class="slideshow-container">
 
             <div class="slideshow-image fade">
-                <img class="slideshow-pic" src="images/lifting.jpeg" style="width:100%">
-                <div class="slideshow-caption">Welcome! Scroll to learn more</div>
+                <img src="../images/weights.jpg" style="width:100%">
+                <div class="slideshow-caption">Image 1</div>
     
             </div>
     
             <div class="slideshow-image fade">
-                <img class="slideshow-pic" src="images/workout.jpeg" style="width:100%">
-                <div class="slideshow-caption">Track your workouts</div>
-    
-            </div>
-
-            <div class="slideshow-image fade">
-                <img class="slideshow-pic" src="images/goals.jpg" style="width:100%">
-                <div class="slideshow-caption">Set your goals</div>
-    
-            </div>
-
-            <div class="slideshow-image fade">
-                <img class="slideshow-pic" src="images/progress.jpg" style="width:100%">
-                <div class="slideshow-caption">View your progress</div>
+                <div class="slideshow-caption">Image 2</div>
     
             </div>
     
             <a class="prev" onClick="moveSlides(-1)">&#10094;</a>
-            <a class="next" onClick="moveSlides(1)">&#10095;</a>
+            <a class="prev" onClick="moveSlides(1)">&#10095;</a>
     
         </div>
         <br>
         <div style="text-align:center">
-            <span class="slideshow-dot" onClick="currentSlide(1)"></span>
-            <span class="slideshow-dot" onClick="currentSlide(2)"></span>
-            <span class="slideshow-dot" onClick="currentSlide(3)"></span>
-            <span class="slideshow-dot" onClick="currentSlide(4)"></span>
-        </div>
-
-        <div style="margin-top: 150px;"></div>
-
-    </div>
+            <span class="slideshow-dot" onclick="currentSlide(1)"></span>
+            <span class="slideshow-dot" onclick="currentSlide(2)"></span>
+            <span class="slideshow-dot" onclick="currentSlide(3)"></span>
+          </div>
 
 
-
-    <!-- <script>
-        document.getElementById("home").style.backgroundColor = "#92C4EE";
-    </script>  -->
-    <script src="/main.js"></script>
     <script>
         var slideIndex = 1;
         showSlides(slideIndex);
