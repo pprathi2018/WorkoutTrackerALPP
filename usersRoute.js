@@ -84,7 +84,7 @@ module.exports = function(app) {
         if(!username || !password || !fullname || !email) {
             errors.push({msg : "Please fill in all fields"})
         }
-        if(password.length < 1 ) {
+        if(password.length < 6 ) {
             errors.push({msg : 'Password at least 6 characters'})
         }
         if (errors.length > 0) {
