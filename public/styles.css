@@ -188,6 +188,11 @@ nav a {
     width: 200px;
 }
 
+.exModal-label {
+    color: black;
+    width: 200px;
+}
+
 .applyBtn {
     position: relative;
 }
@@ -930,10 +935,14 @@ nav a {
   }
 
   .inner-meter {
-      background-color:red;
+      background-color:var(--redColor);
       height: 20px;
   }
 
 .goal-div {
     text-decoration: none;
+}
+
+.warning {
+    color: var(--redColor)
 }
