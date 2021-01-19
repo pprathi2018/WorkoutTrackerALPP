@@ -1,0 +1,12 @@
+{
+    "AWSEBDockerrunVersion": "1",
+    "Image": {
+      "Name": "pprathi2018/gainstop"
+    },
+    "Ports": [
+      {
+        "ContainerPort": "3000"
+      }
+    ]
+  }
+  
