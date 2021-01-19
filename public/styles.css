@@ -607,101 +607,6 @@ nav a {
 	z-index: 1;
 }
 
-/* .bg-bubbles-li {
-	li{
-		position: absolute;
-		list-style: none;
-		display: block;
-		width: 40px;
-		height: 40px;
-		background-color: fade(white, 15%);
-		bottom: -160px;
-		
-		-webkit-animation: square 25s infinite;
-		animation:         square 25s infinite;
-		
-		-webkit-transition-timing-function: linear;
-		transition-timing-function: linear;
-		
-		&:nth-child(1){
-			left: 10%;
-		}
-		
-		&:nth-child(2){
-			left: 20%;
-			
-			width: 80px;
-			height: 80px;
-			
-			animation-delay: 2s;
-			animation-duration: 17s;
-		}
-		
-		&:nth-child(3){
-			left: 25%;
-			animation-delay: 4s;
-		}
-		
-		&:nth-child(4){
-			left: 40%;
-			width: 60px;
-			height: 60px;
-			
-			animation-duration: 22s;
-			
-			background-color: fade(white, 25%);
-		}
-		
-		&:nth-child(5){
-			left: 70%;
-		}
-		
-		&:nth-child(6){
-			left: 80%;
-			width: 120px;
-			height: 120px;
-			
-			animation-delay: 3s;
-			background-color: fade(white, 20%);
-		}
-		
-		&:nth-child(7){
-			left: 32%;
-			width: 160px;
-			height: 160px;
-			
-			animation-delay: 7s;
-		}
-		
-		&:nth-child(8){
-			left: 55%;
-			width: 20px;
-			height: 20px;
-			
-			animation-delay: 15s;
-			animation-duration: 40s;
-		}
-		
-		&:nth-child(9){
-			left: 25%;
-			width: 10px;
-			height: 10px;
-			
-			animation-delay: 2s;
-			animation-duration: 40s;
-			background-color: fade(white, 30%);
-		}
-		
-		&:nth-child(10){
-			left: 90%;
-			width: 160px;
-			height: 160px;
-			
-			animation-delay: 11s;
-		}
-	}
-} */
-
 .goal-progress {
     color: white;
     font-weight: bold;
@@ -946,3 +851,88 @@ nav a {
 .warning {
     color: var(--redColor)
 }
+/* Slide Show Styles */
+
+.slideshow-container {
+    max-width: 650px;
+    position: relative;
+    margin: auto;
+}
+
+.slideshow-image {
+    display: none;
+}
+
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+  
+  @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+
+  .next {
+      right: 0;
+      border-radius: 0 3px 3px 0;
+  }
+
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.6);
+  }
+
+  .slideshow-caption {
+    color: #f2f2f2;
+    font-size: 30px;
+    position: absolute;
+    bottom: 45%;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .slideshow-dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+
+  .slideshow-pic {
+      border-radius: 5%;
+      opacity: 0.4;
+      max-width: 650px;
+      max-height: 360px;
+  }
+  
+  .active, .slideshow-dot:hover {
+    background-color: #717171;
+  }
