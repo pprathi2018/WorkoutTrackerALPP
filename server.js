@@ -195,6 +195,7 @@ app.post('/finishWorkout', (req, res) => {
     var totalWeightLifted = 0;
 
     for (let e in workout) {
+        console.log(e);
         if (i == 0) {
             numSets = workout[e];
             exerciseName = e.substring(4);

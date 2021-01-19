@@ -75,7 +75,6 @@ wspan.onclick = () => {
 }
 
 // When the user clicks anywhere outside of the modal, close it
-/** 
 window.onclick = function(event) {
   if (event.target == gmodal) {
     gmodal.style.display = "none";
@@ -83,7 +82,7 @@ window.onclick = function(event) {
     wmodal.style.display = "none";
   }
 }
-*/
+
 
 // Adds a general goal
 genGoalsBtn.onclick = () => {
@@ -185,14 +184,31 @@ addGoal = (divToAdd, inputVal, isLiftGoal) => {
   });
 }
 
+var exercisesMap = new Map();
+
 addExerciseBtn.onclick = () => {
   var inputVal = addExerciseInput.value;
+  if (exercisesMap.has(inputVal)) {
+    const num = exercisesMap.get(inputVal) + 1;
+    exercisesMap.set(inputVal, num);
+    inputVal = inputVal + num;
+  } else {
+    exercisesMap.set(inputVal, 0);
+  }
+  var warning =  document.getElementById("warning");
+
+  if (inputVal == "") {
+    warning.innerHTML = "Exercise name required!";
+    return;
+  }
+
+  warning.innerHTML = "";
 
   var newEx = document.createElement("div");
   newEx.id = inputVal + "div";
 
   var newLbl = document.createElement("label");
-  newLbl.className = "modal-label";
+  newLbl.className = "exModal-label";
   newLbl.innerHTML = inputVal;
 
   // var div = document.createElement("div");
@@ -342,6 +358,7 @@ workoutClearBtn.onclick = () => {
   sw.reset();
   sw.stop();
   addExerciseInput.value = "";
+  exercisesMap = new Map();
 }
 
 var deleteBtns = document.getElementsByClassName("deleteGoal-btn");
@@ -356,7 +373,6 @@ for (var i = 0; i < deleteBtns.length; i++) {
             })
         })
         .then(res => {
-            // if (res.ok) return res.json();
             reloadNow();
         })
         .catch(error => console.error(error))
