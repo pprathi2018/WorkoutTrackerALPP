@@ -6,7 +6,7 @@ const app = express();
 const connectionString = "mongodb+srv://pprathi2018:Pr01302k1@cluster0.meoms.mongodb.net/WorkoutTrackerDB?retryWrites=true&w=majority"
 
 const mongoose = require('mongoose')
-const port = 3000;
+const port = process.env.port || 3000;
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
