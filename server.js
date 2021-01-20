@@ -3,7 +3,8 @@ console.log("May Node be with you");
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const connectionString = "" + process.env.mongodb_string;
+const connectionString = "mongodb+srv://" + process.env.mongodb_user + ":" + process.env.mongodb_pass + "@cluster0.meoms.mongodb.net/WorkoutTrackerDB?retryWrites=true&w=majority"
+console.log(connectionString)
 
 const mongoose = require('mongoose')
 const port = process.env.port || 3000;
