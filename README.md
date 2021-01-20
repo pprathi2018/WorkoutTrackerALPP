@@ -6,9 +6,10 @@ http://gainstop-env.eba-rsk6ssm7.us-east-1.elasticbeanstalk.com
 
 ### Development Details
 * The bulk of endpoint routing is within server.js, while user login/signup implementation is done in userRoute.js
-* A _Get_ request is made to each endpoint to render the specific ejs file. Necessary information is passed from server-side to EJS files through JSON objects
-* Users have the ability to add to their goals and workouts with _Post_ request, modify their goals with a _Put_, and delete their workouts and goals with _Delete_
+* A __Get__ request is made to each endpoint to render the specific ejs file. Necessary information is passed from server-side to EJS files through JSON objects
+* Users have the ability to add to their goals and workouts with __Post__ request, modify their goals with a __Put__, and delete their workouts and goals with __Delete__
 * Passport middleware is used to authenticate a user login, BCrypt is used to enrypt and decrypt a user's password when stored and retrieved from database
 
 ### Next Steps
 * Configure the web server hosted on AWS for SSL certificate, and enable HTTPS to encrypt information and secure connections. 
+* Build upon what the application can do and create a stronger UI
