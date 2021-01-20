@@ -1,1 +1,1 @@
-# WorkoutTrackerALPP
+# GAINSTOP: Workout and Fitness Tracker
