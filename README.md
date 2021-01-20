@@ -12,8 +12,8 @@ http://gainstop-env.eba-rsk6ssm7.us-east-1.elasticbeanstalk.com
 * Passport middleware is used to authenticate a user login, BCrypt is used to enrypt and decrypt a user's password when stored and retrieved from database
 
 ### Next Steps
-* Configure the web server hosted on AWS for SSL certificate, and enable HTTPS to encrypt information and secure connections. 
+* Configure the web server hosted on AWS for SSL certificate, and enable HTTPS to encrypt information and secure connections 
 * Build upon what the application can do and create a stronger UI
-* Implement the ability to create custome exercises, view personal records, and select exercises while recording workouts.
+* Implement the ability to create custom exercises, view personal records, and select exercises while recording workouts
 * Implement a calendar and routines function so user's can plan their workouts
 * Setup data analysis to display information about user's workouts and goals 
