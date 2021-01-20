@@ -3,7 +3,7 @@ console.log("May Node be with you");
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const connectionString = "mongodb+srv://pprathi2018:Pr01302k1@cluster0.meoms.mongodb.net/WorkoutTrackerDB?retryWrites=true&w=majority"
+const connectionString = "" + process.env.mongodb_string;
 
 const mongoose = require('mongoose')
 const port = process.env.port || 3000;
@@ -14,7 +14,6 @@ require("./utils/passport")(passport)
 
 
 // ------ Models ------ //
-// const ExerciseModel = require('./models/Exercise.js')
 const { goalSchema } = require('./models/User.js');
 const { userSchema } = require('./models/User.js');
 const { exerciseSchema } = require('./models/User.js');
@@ -28,7 +27,6 @@ var connection = mongoose.connection;
 var user;
 
 app.set('view engine', 'ejs');
-//app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.urlencoded({extended : false}));
 app.use(session({
     secret: 'secret',
@@ -72,8 +70,6 @@ app.get("/home", (req, res) => {
 app.get('/workouts', ensureAuthentication, async (req, res) => {
     var workouts = req.user.workouts;
     var exercises = req.user.exercises;
-    // console.log(workouts);
-    // console.log(exercises);
     res.render('workouts.ejs', 
     {
         workouts,
@@ -94,12 +90,6 @@ app.get('/analytics', ensureAuthentication, (req, res) => {
     genGoals.forEach((goal, i) => genGoalMap.set(goal, genGoalProgress[i]));
     liftGoals.forEach((goal, i) => liftGoalMap.set(goal, liftGoalProgress[i]));
 
-    // console.log(liftGoalMap);
-    // for (const [goal, progress] of genGoalMap) {
-    //     console.log(goal);
-    // }
-    // console.log(10/50);
-        
     res.render('analytics.ejs', {genGoalMap, liftGoalMap, loginStatus: "Logout"});
 })
 
@@ -235,7 +225,6 @@ app.post('/finishWorkout', (req, res) => {
         }
     ).catch(error => console.error(error))
     res.redirect('/home');
-    // console.log(req.body);
 })
 
 getProgress = function(start, current, goal) {
@@ -250,56 +239,6 @@ getProgress = function(start, current, goal) {
     }
 }
 
-/**
-app.post('/exercises', (req, res) => {
-    exercisesCollection.insertOne(req.body).then(result => {
-        res.redirect('/');
-    }).catch(error => console.error(error))
-})
-*/
-
-// app.post('/exercises', (req, res) => {
-//     var newExercise = new ExerciseModel();
-//     newExercise.name = req.body.name;
-//     newExercise.weight = req.body.weight;
-//     newExercise.save((err, data) => {
-//         if (err) {
-//             console.log(error);
-//         }
-//         else {
-//             res.redirect('/');
-//         }
-//     })
-
-// })
-
-// app.put('/exercises', (req, res) => {
-//     ExerciseModel.findOneAndUpdate(
-//         { name: 'Dumbell Press' },
-//         {
-//             name: req.body.name,
-//             weight: req.body.weight
-//         },
-//         {
-//             new: true,
-//             upsert: true
-//         }
-//     ).then(result => {
-//         res.json('Success');
-//     }).catch(error => console.error(error))
-// })
-
-// app.delete('/exercises', async (req, res) => {
-//     ExerciseModel.deleteOne(
-//         { name: req.body.name },
-//     ).then(result => {
-//         if (result.deletedCount === 0) {
-//             return res.json('No Barbell Exercise to delete');
-//         }
-//         res.json('Deleted a Barbell Exercise');
-//     }).catch(error => console.error(error))
-// })
-
 app.delete('/deleteGoal', async (req, res) => {
     var curUser = await userSchema.findOne({username: user.username})
     var goals = curUser.goals;
@@ -312,29 +251,7 @@ app.delete('/deleteGoal', async (req, res) => {
     }
     goals.splice(toDelete, 1);
     const doc = await curUser.save()
-
-    // for (const [i, goal] of curUserGoals.entries()) {
-    //     if (goal.name == g.substring(7)) {
-    //         curUserGoals[i] = newGoal;
-    //         const doc = await curUser.save()
-    //         foundCopy = true;
-    //         console.log('updatedGoal')
-    //         break;
-    //     }
-    // }
-
-
-    // res.render('analytics.ejs', {genGoalMap, liftGoalMap, loginStatus: "Logout"});
-    // console.log(req.body.name);
-    // userSchema.findOneAndUpdate( 
-    //     {username: user.username},
-    //     { $pull: {goals: {$elemMatch:{ name: [req.body.name] }}}}
-    // ).then(result => {
-    //     console.log(result);
-    // })
-    // toDelete = user.goals.filter(goal=>goal.name == req.body.name);
-    // console.log(toDelete);
-    // user.goals.remove(toDelete);
+    
     return res.json("Success");
 })
 

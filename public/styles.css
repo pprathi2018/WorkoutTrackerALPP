@@ -138,15 +138,6 @@ nav a {
     text-transform: uppercase;
 }
   
-/* nav ul li:hover {
-    background-color: #D3D3D3;
-    color: black;
-    -webkit-transition: .3s ease-in-out;
-    -o-transition: .3s ease-in-out;
-    transition: .3s ease-in-out;
-} */
-
-
 /* THE MODAL (background) */
 .modal {
     display: none;
@@ -236,7 +227,6 @@ nav a {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
-    /* transition: border-radius 0.2s ease-out; */
     background-color: #f1f1f1;
     text-align: left;
     width: 100%;
@@ -255,16 +245,9 @@ nav a {
 
 .action-btn {
     justify-content: center;
-    /* font-size: 13px;
-    /* margin: 0 auto;
-    padding: 13px 35px; */
     border-radius: 6px;
     letter-spacing: 2px;
     text-align: center;
-    /*
-    text-decoration: none;
-    text-transform: uppercase;
-    line-height: 21px; */
     background-color: white;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -273,11 +256,6 @@ nav a {
     -webkit-transition: .4s ease-in-out;
     -o-transition: .4s ease-in-out;
     transition: .4s ease-in-out;
-    /* position: relative;
-    top: 20%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%); */
     cursor: pointer;
     margin: 2px;
     padding: 4px;
@@ -291,16 +269,9 @@ nav a {
 
 .deleteEx-btn {
     justify-content: center;
-    /* font-size: 13px;
-    /* margin: 0 auto;
-    padding: 13px 35px; */
     border-radius: 6px;
     letter-spacing: 2px;
     text-align: center;
-    /*
-    text-decoration: none;
-    text-transform: uppercase;
-    line-height: 21px; */
     background-color: white;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -309,11 +280,6 @@ nav a {
     -webkit-transition: .4s ease-in-out;
     -o-transition: .4s ease-in-out;
     transition: .4s ease-in-out;
-    /* position: relative;
-    top: 20%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%); */
     cursor: pointer;
     margin: 2px;
     padding: 4px;
@@ -327,16 +293,9 @@ nav a {
 
 .deleteGoal-btn {
     justify-content: center;
-    /* font-size: 13px;
-    /* margin: 0 auto;
-    padding: 13px 35px; */
     border-radius: 6px;
     letter-spacing: 2px;
     text-align: center;
-    /*
-    text-decoration: none;
-    text-transform: uppercase;
-    line-height: 21px; */
     background-color: white;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -345,11 +304,6 @@ nav a {
     -webkit-transition: .4s ease-in-out;
     -o-transition: .4s ease-in-out;
     transition: .4s ease-in-out;
-    /* position: relative;
-    top: 20%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%); */
     cursor: pointer;
     margin: 2px;
     padding: 4px;
@@ -378,26 +332,9 @@ nav a {
     text-align: center;
 }
 
-/* .exercise-btn {
-    background-color: white;
-    width: 150px;
-    height: 150px;
-    border-radius: 20px;
-    margin: 10px;
-} */
-
 .exercise-btn:hover {
     background-color: rgb(199, 199, 199);
 }
-
-/* .split {
-    display: block;
-    width: 50%;
-    height: 100%;
-    background-color: navy;
-    float: left;
-}
-*/
 
 .styledBtn {
     font-size: 13px;
@@ -425,8 +362,6 @@ nav a {
 }
 
 .exercise-btn {
-    /* width: 150px;
-    height: 150px; */
     font-size: 13px;
     display: inline-block;
     margin: 6px;
@@ -446,9 +381,6 @@ nav a {
     transition: .4s ease-in-out;
     position: relative;
     top: 20%;
-    /* left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%); */
 }
 
 .styledBtn:hover {
@@ -485,23 +417,6 @@ nav a {
 	color: white;
 	font-weight: 300;
 }
-
-/* .wrapper{
-	background: #50a3a2;
-    background: linear-gradient(to bottom right, #a1c4fd, #c2e9fb);
-	position: absolute;
-	left: 0;
-	width: 100%;
-	height: 100%;
-} */
-
-/* &.form-success{
-    .container{
-        h1{
-            transform: translateY(85px);
-        }
-    }
-} */
 
 .container {
 	max-width: 600px;
@@ -559,7 +474,6 @@ nav a {
 	
 .login-btn{
     font-size: 13px;
-    /* display: inline-block; */
     margin: 0 auto;
     padding: 13px 35px;
     border-radius: 5px;
@@ -575,23 +489,11 @@ nav a {
     -webkit-transition: .4s ease-in-out;
     -o-transition: .4s ease-in-out;
     transition: .4s ease-in-out;
-    /* position: relative; */
-    /* top: 20%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%); */
-
     appearance: none;
     /* outline: 0; */
     background-color: white;
-    /* border: 0; */
-    /* padding: 10px 15px; */
-    /* color: #0c0c0c; */
-    /* border-radius: 3px; */
     width: 250px;
     cursor: pointer;
-    /* font-size: 18px; */
-    /* transition-duration: 0.25s; */
 }
 
 .login-btn:hover {
@@ -714,23 +616,14 @@ nav a {
     display: inline;
     box-sizing: initial;
     width: 80px;
-    /* outline: 1px solid black; */
     margin: 2px;
     padding: 4px;
-    /* top: -2px; */
 }
 
 .timer-btn {
-    /* font-size: 13px;
-    /* margin: 0 auto;
-    padding: 13px 35px; */
     border-radius: 6px;
     letter-spacing: 2px;
     text-align: center;
-    /*
-    text-decoration: none;
-    text-transform: uppercase;
-    line-height: 21px; */
     background-color: white;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -739,11 +632,6 @@ nav a {
     -webkit-transition: .4s ease-in-out;
     -o-transition: .4s ease-in-out;
     transition: .4s ease-in-out;
-    /* position: relative;
-    top: 20%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%); */
     cursor: pointer;
     margin: 2px;
     padding: 4px;
@@ -761,7 +649,6 @@ nav a {
     left: 200px;
     display: inline;
     position: absolute;
-    /* position: relative; */
 }
 
 .exercise-div {

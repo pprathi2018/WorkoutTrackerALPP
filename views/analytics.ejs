@@ -16,6 +16,7 @@
         <div id="progress-gengoals">
             <h3 class="goal-progress">General Goals Progress:</h3>
             <% for (const [goal, progress] of genGoalMap) { %>
+                <% if (!(goal.start == null || goal.start == "" || goal.current == null || goal.current == "" || goal.goal == null || goal.goal == "")) { %>
                         <button class="progress-collapsible">
                             <div class="inner-meter" id="progress<%-goal.name%>" style='width: <%= progress%>'>
                             </div>
@@ -27,6 +28,7 @@
                             <p>Current: <%- goal.current %></p>
                             <p style="margin-right: 20px;">Finish: <%- goal.goal %></p>
                         </div>
+                <% } %>
 
             <% }; %>
         </div>
@@ -36,18 +38,19 @@
         <div id="progress-liftgoals">
             <h3 class="goal-progress">Lift Goals Progress:</h3>
             <% for (const [goal, progress] of liftGoalMap) { %>
-                <button class="progress-collapsible">
-                    <div class="inner-meter" id="progress<%-goal.name%>" style='width: <%= progress%>'>
+                <% if (!(goal.start == null || goal.start == "" || goal.current == null || goal.current == "" || goal.goal == null || goal.goal == "")) { %>
+                    <button class="progress-collapsible">
+                        <div class="inner-meter" id="progress<%-goal.name%>" style='width: <%= progress%>'>
+                        </div>
+                        <%- goal.name %>
+                        <%- progress.substring(0, progress.indexOf('.')) + '%' %>
+                    </button>
+                    <div class="progress-collapsiblecontent">
+                        <p style="margin-left: 20px;">Start: <%- goal.start %></p>
+                        <p>Current: <%- goal.current %></p>
+                        <p style="margin-right: 20px;">Finish: <%- goal.goal %></p>
                     </div>
-                    <%- goal.name %>
-                    <%- progress.substring(0, progress.indexOf('.')) + '%' %>
-                </button>
-                <div class="progress-collapsiblecontent">
-                    <p style="margin-left: 20px;">Start: <%- goal.start %></p>
-                    <p>Current: <%- goal.current %></p>
-                    <p style="margin-right: 20px;">Finish: <%- goal.goal %></p>
-                </div>
-
+                <% } %>
             <% }; %>
         </div>
     </div>

@@ -60,8 +60,7 @@
             <button class="exercise-btn">Abs</button>
             <button class="exercise-btn">Other</button>
         </div>
-        <!-- <div class="workout-div">Routines</div>
-        <div class="workout-div">Exercises</div> -->
+
     </div>
 
     <script>
@@ -76,13 +75,9 @@
                 var content = this.nextElementSibling;
                 if (content.style.maxHeight){
                     content.style.maxHeight = null;
-                    // content.style.padding = "0";
-                    // this.style.borderRadius = "30px";
                     
                 } else {
                     content.style.maxHeight = content.scrollHeight + "px";
-                    // content.style.padding = "10px";
-                    // this.style.borderRadius = "0";
                 } 
             });
         }
